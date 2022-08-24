@@ -13,6 +13,7 @@
 		AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */; };
 		AAC85CF728AEAFA20024B6E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */; };
 		AAC85CFA28AEAFA20024B6E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */; };
+		AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAC85CF928AEAFA20024B6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAC85CFB28AEAFA20024B6E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B9F156C86296E58BB661320D /* Pods-Marketplace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.release.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,14 +80,31 @@
 		AAC85CEC28AEAFA10024B6E9 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				AAC85D0628B52B850024B6E9 /* Controllers */,
+				AAC85D0528B52B680024B6E9 /* Views */,
 				AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */,
 				AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */,
-				AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */,
 				AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */,
 				AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */,
 				AAC85CFB28AEAFA20024B6E9 /* Info.plist */,
 			);
 			path = Marketplace;
+			sourceTree = "<group>";
+		};
+		AAC85D0528B52B680024B6E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAC85D0628B52B850024B6E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +224,7 @@
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,
+				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

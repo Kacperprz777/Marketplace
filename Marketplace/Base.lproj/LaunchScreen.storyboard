@@ -15,8 +15,21 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-Marketplace" translatesAutoresizingMaskIntoConstraints="NO" id="18m-fE-QmK">
+                                <rect key="frame" x="84.5" y="318" width="245" height="260"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="245" id="KSI-gM-cyZ"/>
+                                    <constraint firstAttribute="height" constant="260" id="NpG-3P-ChY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="18m-fE-QmK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kKU-B1-UhY"/>
+                            <constraint firstItem="18m-fE-QmK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yDQ-dF-qVR"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -25,6 +38,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo-Marketplace" width="390.33334350585938" height="398.33334350585938"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
