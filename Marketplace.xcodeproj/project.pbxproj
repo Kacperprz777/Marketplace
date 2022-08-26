@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		160317A449F70071F4920F90 /* Pods_Marketplace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */; };
+		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */; };
 		AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */; };
 		AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marketplace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D463A8B6CAB5E240A498AA /* Pods-Marketplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.debug.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.debug.xcconfig"; sourceTree = "<group>"; };
+		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AAC85CEA28AEAFA10024B6E9 /* Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */,
+				AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,

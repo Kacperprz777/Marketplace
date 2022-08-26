@@ -11,15 +11,25 @@ import SnapKit
 class LoginViewController: UIViewController {
 
     private let welcomeView = WelcomeView()
+    private let loginScreenView = LoginScreenView()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureWelcomeView()
     }
     
+    override func loadView() {
+        view = loginScreenView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        configureVC()
+    }
+    
+    private func configureVC() {
+        navigationController?.isNavigationBarHidden = true
+        view.backgroundColor = .systemBackground
     }
     
     private func configureWelcomeView() {
@@ -28,9 +38,7 @@ class LoginViewController: UIViewController {
         welcomeView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
-        
     }
-
 
 }
 
