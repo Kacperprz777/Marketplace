@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		160317A449F70071F4920F90 /* Pods_Marketplace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
+		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
+		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
 		AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */; };
 		AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */; };
 		AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */; };
@@ -21,6 +23,8 @@
 		3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marketplace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D463A8B6CAB5E240A498AA /* Pods-Marketplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.debug.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.debug.xcconfig"; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
+		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		AAC85CEA28AEAFA10024B6E9 /* Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AA5F5DE028B8C64400936E76 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA5F5DE628B92EC100936E76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AAC85CE128AEAFA10024B6E9 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +102,8 @@
 		AAC85CEC28AEAFA10024B6E9 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				AA5F5DE628B92EC100936E76 /* Extensions */,
+				AA5F5DE028B8C64400936E76 /* ViewModels */,
 				AAC85D0628B52B850024B6E9 /* Controllers */,
 				AAC85D0528B52B680024B6E9 /* Views */,
 				AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */,
@@ -224,8 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */,
 				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
+				AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,

@@ -11,7 +11,7 @@ import SnapKit
 class LoginViewController: UIViewController {
 
     private let welcomeView = WelcomeView()
-    private let loginScreenView = LoginScreenView()
+    private let loginScreenView = LoginScreenView(viewModel: LoginScreenViewModel())
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

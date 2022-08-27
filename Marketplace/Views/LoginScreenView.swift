@@ -11,9 +11,12 @@ class LoginScreenView: UIView {
 
     private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
     private let stackViewLoginInput = UIStackView()
+    private let viewModel: LoginScreenViewModel
+
+    
     private let mainButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Sign In", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -30,46 +33,15 @@ class LoginScreenView: UIView {
     
     private let scrollView = UIScrollView()
     
-    private let userNameTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .systemOrange
-        textField.attributedPlaceholder = NSAttributedString(string: "Name", attributes: [
-            .foregroundColor: UIColor.lightGray
-        ])
-        return textField
-    }()
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .systemOrange
-        textField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
-            .foregroundColor: UIColor.lightGray
-        ])
-        textField.autocapitalizationType = .none
-        return textField
-    }()
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .systemOrange
-        textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [
-            .foregroundColor: UIColor.lightGray
-        ])
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    
-    private let repeatPasswordTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .systemOrange
-        textField.attributedPlaceholder = NSAttributedString(string: "Repeat password", attributes: [
-            .foregroundColor: UIColor.lightGray
-        ])
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+    private(set) var userNameTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Name", isPassword: false)
+    private(set) var emailTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Email", isPassword: false)
+    private(set) var passwordTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Password", isPassword: true)
+    private(set) var repeatPasswordTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Repeat password", isPassword: true)
     
     private var segmentedControl = UISegmentedControl()
     
-    init() {
+    init(viewModel: LoginScreenViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         configureScrollView()
         configureLogoImage()
@@ -77,6 +49,7 @@ class LoginScreenView: UIView {
         configureStackViewLoginInput()
         configureMainButton()
         configureForgotPasswordButton()
+        configureTapGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -114,19 +87,26 @@ class LoginScreenView: UIView {
             make.top.equalTo(logoImage.snp_bottom).offset(15)
             make.leading.trailing.equalTo(scrollView).offset(55)
             make.centerX.equalTo(logoImage.snp_centerX)
-            make.height.equalTo(25)
+            make.height.equalTo(30)
         }
     }
     
     @objc func segmentedControlDidChange(sender: UISegmentedControl) {
+        viewModel.toogleState()
         
-        userNameTextField.isHidden = false
-        repeatPasswordTextField.isHidden = false
+        userNameTextField.isHidden = viewModel.isInSignInState
+        repeatPasswordTextField.isHidden = viewModel.isInSignInState
+        mainButton.setTitle(viewModel.setTitleForMainButton(), for: .normal)
+        
     }
     
     private func configureStackViewLoginInput() {
         userNameTextField.isHidden = true
         repeatPasswordTextField.isHidden = true
+        userNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
         
         stackViewLoginInput.addArrangedSubview(userNameTextField)
         stackViewLoginInput.addArrangedSubview(emailTextField)
@@ -152,7 +132,7 @@ class LoginScreenView: UIView {
         mainButton.snp.makeConstraints { make in
             make.leading.trailing.equalTo(stackViewLoginInput)
             make.top.equalTo(stackViewLoginInput.snp_bottom).offset(20)
-            make.height.equalTo(35)
+            make.height.equalTo(45)
         }
     }
     
@@ -176,8 +156,25 @@ class LoginScreenView: UIView {
         print("forgotPasswordButtonTapped")
     }
     
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
+        addGestureRecognizer(tapGesture)
+    }
     
+}
+
+
+extension LoginScreenView: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 175), animated: true)
+    }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
     
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//    }
 }
