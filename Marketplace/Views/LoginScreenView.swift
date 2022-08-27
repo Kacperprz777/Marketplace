@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LoginScreenPresentForgotPasswordVC: AnyObject {
+    func forgotPasswordVC()
+}
+
 class LoginScreenView: UIView {
 
     private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
@@ -39,6 +43,8 @@ class LoginScreenView: UIView {
     private(set) var repeatPasswordTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Repeat password", isPassword: true)
     
     private var segmentedControl = UISegmentedControl()
+    
+    weak var present: LoginScreenPresentForgotPasswordVC?
     
     init(viewModel: LoginScreenViewModel) {
         self.viewModel = viewModel
@@ -153,7 +159,7 @@ class LoginScreenView: UIView {
     }
     
     @objc private func forgotPasswordButtonTapped() {
-        print("forgotPasswordButtonTapped")
+        present?.forgotPasswordVC()
     }
     
     private func configureTapGesture() {

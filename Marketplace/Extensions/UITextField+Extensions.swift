@@ -19,4 +19,12 @@ extension UITextField {
             return textField
     }
     
+    static func makeTextfield(placeholder: String) -> UITextField {
+            let textField = UITextField()
+            textField.textColor = .black
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+                .foregroundColor: UIColor.lightGray
+            ])
+            return textField
+    }
 }

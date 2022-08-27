@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureWelcomeView()
+        configureLoginScreenView()
     }
     
     override func loadView() {
@@ -32,6 +33,10 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
     }
     
+    private func configureLoginScreenView() {
+        loginScreenView.present = self
+    }
+    
     private func configureWelcomeView() {
         view.addSubview(welcomeView)
         
@@ -42,3 +47,9 @@ class LoginViewController: UIViewController {
 
 }
 
+extension LoginViewController: LoginScreenPresentForgotPasswordVC {
+    func forgotPasswordVC() {
+        let forgotPasswordVC = UINavigationController(rootViewController: ForgotPasswordViewController())
+        present(forgotPasswordVC, animated: true)
+    }
+}
