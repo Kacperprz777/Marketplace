@@ -8,25 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		160317A449F70071F4920F90 /* Pods_Marketplace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */; };
+		AA24B48228BA218A00EC7E3B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B48128BA218A00EC7E3B /* ForgotPasswordViewController.swift */; };
+		AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B48328BA21B000EC7E3B /* ForgotPasswordView.swift */; };
+		AA24B48628BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B48528BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift */; };
+		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
+		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
+		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
 		AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */; };
 		AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */; };
-		AAC85CF228AEAFA10024B6E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CF128AEAFA10024B6E9 /* ViewController.swift */; };
-		AAC85CF528AEAFA10024B6E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF328AEAFA10024B6E9 /* Main.storyboard */; };
+		AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */; };
 		AAC85CF728AEAFA20024B6E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */; };
 		AAC85CFA28AEAFA20024B6E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */; };
+		AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3ADDE3C3A8803D5670F76B9D /* Pods_Marketplace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marketplace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D463A8B6CAB5E240A498AA /* Pods-Marketplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.debug.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.debug.xcconfig"; sourceTree = "<group>"; };
+		AA24B48128BA218A00EC7E3B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		AA24B48328BA21B000EC7E3B /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		AA24B48528BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
+		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		AAC85CEA28AEAFA10024B6E9 /* Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AAC85CF128AEAFA10024B6E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AAC85CF428AEAFA10024B6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAC85CF928AEAFA20024B6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAC85CFB28AEAFA20024B6E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B9F156C86296E58BB661320D /* Pods-Marketplace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.release.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,8 +68,24 @@
 				95D463A8B6CAB5E240A498AA /* Pods-Marketplace.debug.xcconfig */,
 				B9F156C86296E58BB661320D /* Pods-Marketplace.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA5F5DE028B8C64400936E76 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */,
+				AA24B48528BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA5F5DE628B92EC100936E76 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AAC85CE128AEAFA10024B6E9 = {
@@ -81,15 +109,36 @@
 		AAC85CEC28AEAFA10024B6E9 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				AA5F5DE628B92EC100936E76 /* Extensions */,
+				AA5F5DE028B8C64400936E76 /* ViewModels */,
+				AAC85D0628B52B850024B6E9 /* Controllers */,
+				AAC85D0528B52B680024B6E9 /* Views */,
 				AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */,
 				AAC85CEF28AEAFA10024B6E9 /* SceneDelegate.swift */,
-				AAC85CF128AEAFA10024B6E9 /* ViewController.swift */,
-				AAC85CF328AEAFA10024B6E9 /* Main.storyboard */,
 				AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */,
 				AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */,
 				AAC85CFB28AEAFA20024B6E9 /* Info.plist */,
 			);
 			path = Marketplace;
+			sourceTree = "<group>";
+		};
+		AAC85D0528B52B680024B6E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */,
+				AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */,
+				AA24B48328BA21B000EC7E3B /* ForgotPasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAC85D0628B52B850024B6E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */,
+				AA24B48128BA218A00EC7E3B /* ForgotPasswordViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +203,6 @@
 			files = (
 				AAC85CFA28AEAFA20024B6E9 /* LaunchScreen.storyboard in Resources */,
 				AAC85CF728AEAFA20024B6E9 /* Assets.xcassets in Resources */,
-				AAC85CF528AEAFA10024B6E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,23 +255,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC85CF228AEAFA10024B6E9 /* ViewController.swift in Sources */,
+				AA24B48228BA218A00EC7E3B /* ForgotPasswordViewController.swift in Sources */,
+				AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */,
+				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
+				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
+				AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
+				AA24B48628BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,
+				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
+				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AAC85CF328AEAFA10024B6E9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AAC85CF428AEAFA10024B6E9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -361,7 +408,6 @@
 				INFOPLIST_FILE = Marketplace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -373,7 +419,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -389,7 +435,6 @@
 				INFOPLIST_FILE = Marketplace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,7 +446,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
