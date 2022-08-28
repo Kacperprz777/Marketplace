@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginScreenPresentForgotPasswordVC {
     func forgotPasswordVC() {
-        let forgotPasswordVC = UINavigationController(rootViewController: ForgotPasswordViewController())
+        let forgotPasswordVC = UINavigationController(rootViewController: ForgotPasswordViewController(viewModel: ForgotPasswordViewModel()))
         present(forgotPasswordVC, animated: true)
     }
 }

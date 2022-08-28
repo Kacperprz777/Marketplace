@@ -15,7 +15,10 @@ class ForgotPasswordView: UIView {
     private let emailTextField = UITextField.makeTextfield(placeholder: "Email")
     private let sendNewPasswordButton = UIButton()
     
-    override init(frame: CGRect) {
+    private(set) var viewModel: ForgotPasswordViewModel
+    
+    init(viewModel: ForgotPasswordViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         configureAppTitleImage()
         configureResetPasswordLabel()
@@ -85,7 +88,7 @@ class ForgotPasswordView: UIView {
     }
     
     @objc private func sendNewPasswordButtonTapped() {
-        print("sendNewPasswordButtonTapped")
+        viewModel.onSendNewPasswordButtonTapped()
     }
     
     

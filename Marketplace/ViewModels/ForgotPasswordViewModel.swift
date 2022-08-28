@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+final class ForgotPasswordViewModel {
+    
+    var onSendNewPasswordButtonTapped: () -> Void = {}
+    
+    func resetPassword(withEmail: String) {
+        
+        onSendNewPasswordButtonTapped()
+    }
+
+}
