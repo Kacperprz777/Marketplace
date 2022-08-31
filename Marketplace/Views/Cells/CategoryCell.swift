@@ -37,7 +37,7 @@ class CategoryCell: UICollectionViewCell {
     }
     
     private func configureCategoryNameLabel() {
-        categoryNameLabel.font = UIFont.systemFont(ofSize: 18)
+        categoryNameLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         categoryNameLabel.textAlignment = .center
         categoryNameLabel.textColor = .systemBlue
         categoryNameLabel.numberOfLines = 0

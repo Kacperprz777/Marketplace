@@ -17,6 +17,9 @@
 		AA24B49128BD0B3900EC7E3B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B49028BD0B3900EC7E3B /* Category.swift */; };
 		AA24B49428BD0CC100EC7E3B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B49328BD0CC100EC7E3B /* CategoryCell.swift */; };
 		AA24B49628BD2ABF00EC7E3B /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B49528BD2ABF00EC7E3B /* CategoryCellViewModel.swift */; };
+		AA24B4BC28BE7CDE00EC7E3B /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BB28BE7CDE00EC7E3B /* ItemCell.swift */; };
+		AA24B4BE28BF618A00EC7E3B /* ItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */; };
+		AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BF28BF62D700EC7E3B /* Item.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
@@ -40,6 +43,9 @@
 		AA24B49028BD0B3900EC7E3B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		AA24B49328BD0CC100EC7E3B /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		AA24B49528BD2ABF00EC7E3B /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
+		AA24B4BB28BE7CDE00EC7E3B /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModel.swift; sourceTree = "<group>"; };
+		AA24B4BF28BF62D700EC7E3B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AA24B49028BD0B3900EC7E3B /* Category.swift */,
+				AA24B4BF28BF62D700EC7E3B /* Item.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				AA24B49328BD0CC100EC7E3B /* CategoryCell.swift */,
+				AA24B4BB28BE7CDE00EC7E3B /* ItemCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -106,6 +114,7 @@
 				AA24B48528BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift */,
 				AA24B48B28BCBF3600EC7E3B /* ItemFeedViewModel.swift */,
 				AA24B49528BD2ABF00EC7E3B /* CategoryCellViewModel.swift */,
+				AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -294,6 +303,8 @@
 				AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */,
 				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
 				AA24B48A28BCBF0600EC7E3B /* ItemFeedView.swift in Sources */,
+				AA24B4BE28BF618A00EC7E3B /* ItemCellViewModel.swift in Sources */,
+				AA24B4BC28BE7CDE00EC7E3B /* ItemCell.swift in Sources */,
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
 				AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
@@ -301,6 +312,7 @@
 				AA24B48E28BCBFA200EC7E3B /* ItemFeedViewController.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,
 				AA24B48C28BCBF3600EC7E3B /* ItemFeedViewModel.swift in Sources */,
+				AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */,
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 				AA24B49128BD0B3900EC7E3B /* Category.swift in Sources */,
