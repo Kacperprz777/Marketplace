@@ -20,6 +20,11 @@
 		AA24B4BC28BE7CDE00EC7E3B /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BB28BE7CDE00EC7E3B /* ItemCell.swift */; };
 		AA24B4BE28BF618A00EC7E3B /* ItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */; };
 		AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4BF28BF62D700EC7E3B /* Item.swift */; };
+		AA24B4C228BFBA1800EC7E3B /* SellItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C128BFBA1800EC7E3B /* SellItemViewController.swift */; };
+		AA24B4C428BFBA6200EC7E3B /* SellItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C328BFBA6200EC7E3B /* SellItemView.swift */; };
+		AA24B4C628BFBA8600EC7E3B /* SellItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */; };
+		AA24B4C828C0F2D500EC7E3B /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */; };
+		AA24B4CA28C1085500EC7E3B /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C928C1085500EC7E3B /* BindingTextField.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
@@ -46,6 +51,11 @@
 		AA24B4BB28BE7CDE00EC7E3B /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModel.swift; sourceTree = "<group>"; };
 		AA24B4BF28BF62D700EC7E3B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		AA24B4C128BFBA1800EC7E3B /* SellItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellItemViewController.swift; sourceTree = "<group>"; };
+		AA24B4C328BFBA6200EC7E3B /* SellItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellItemView.swift; sourceTree = "<group>"; };
+		AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellItemViewModel.swift; sourceTree = "<group>"; };
+		AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		AA24B4C928C1085500EC7E3B /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -107,6 +117,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		AA24B4CB28C20BB400EC7E3B /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				AA24B4C928C1085500EC7E3B /* BindingTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
 		AA5F5DE028B8C64400936E76 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +133,7 @@
 				AA24B48B28BCBF3600EC7E3B /* ItemFeedViewModel.swift */,
 				AA24B49528BD2ABF00EC7E3B /* CategoryCellViewModel.swift */,
 				AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */,
+				AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -123,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */,
+				AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,11 +185,13 @@
 		AAC85D0528B52B680024B6E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA24B4CB28C20BB400EC7E3B /* TextFields */,
 				AA24B49228BD0C6900EC7E3B /* Cells */,
 				AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */,
 				AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */,
 				AA24B48328BA21B000EC7E3B /* ForgotPasswordView.swift */,
 				AA24B48928BCBF0600EC7E3B /* ItemFeedView.swift */,
+				AA24B4C328BFBA6200EC7E3B /* SellItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +202,7 @@
 				AAC85CF128AEAFA10024B6E9 /* LoginViewController.swift */,
 				AA24B48128BA218A00EC7E3B /* ForgotPasswordViewController.swift */,
 				AA24B48D28BCBFA200EC7E3B /* ItemFeedViewController.swift */,
+				AA24B4C128BFBA1800EC7E3B /* SellItemViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,7 +321,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA24B4CA28C1085500EC7E3B /* BindingTextField.swift in Sources */,
 				AA24B49628BD2ABF00EC7E3B /* CategoryCellViewModel.swift in Sources */,
+				AA24B4C828C0F2D500EC7E3B /* UIButton+Extensions.swift in Sources */,
+				AA24B4C228BFBA1800EC7E3B /* SellItemViewController.swift in Sources */,
 				AA24B48228BA218A00EC7E3B /* ForgotPasswordViewController.swift in Sources */,
 				AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */,
 				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
@@ -311,6 +337,8 @@
 				AA24B48628BA8BBA00EC7E3B /* ForgotPasswordViewModel.swift in Sources */,
 				AA24B48E28BCBFA200EC7E3B /* ItemFeedViewController.swift in Sources */,
 				AAC85CF028AEAFA10024B6E9 /* SceneDelegate.swift in Sources */,
+				AA24B4C428BFBA6200EC7E3B /* SellItemView.swift in Sources */,
+				AA24B4C628BFBA8600EC7E3B /* SellItemViewModel.swift in Sources */,
 				AA24B48C28BCBF3600EC7E3B /* ItemFeedViewModel.swift in Sources */,
 				AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */,
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
