@@ -16,24 +16,8 @@ class LoginScreenView: UIView {
     private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
     private let stackViewLoginInput = UIStackView()
     private let viewModel: LoginScreenViewModel
-
-    
-    private let mainButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Sign In", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 10
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        return button
-    }()
-    
-    private let forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Forgot your password?", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        return button
-    }()
+    private let mainButton = UIButton.makeButton(title: "Sign In")
+    private let forgotPasswordButton = UIButton.makeforgotPasswordButton()
     
     private let scrollView = UIScrollView()
     

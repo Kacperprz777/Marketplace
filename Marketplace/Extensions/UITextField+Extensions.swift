@@ -25,6 +25,9 @@ extension UITextField {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
                 .foregroundColor: UIColor.lightGray
             ])
+        textField.contentVerticalAlignment = .top
             return textField
     }
 }
+
+
