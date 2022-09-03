@@ -16,8 +16,14 @@ class SellItemView: UIView {
     private let sellButton = UIButton.makeButton(title: "Sell")
     
     private var categoriesPicker = UIPickerView()
-    private var itemImage = UIImageView()
+    var itemImage = UIImageView()
     private(set) var viewModel: SellItemViewModel
+    
+    private lazy var longPressGesture: UITapGestureRecognizer = {
+      let gesture = UITapGestureRecognizer()
+      gesture.addTarget(self, action: #selector(showPhotoOptions))
+      return gesture
+    }()
     
     init(viewModel: SellItemViewModel) {
         self.viewModel = viewModel
@@ -30,7 +36,6 @@ class SellItemView: UIView {
         configureDescriptionTextField()
         configureSellButton()
         configureTapGesture()
-
         
     }
     
@@ -54,12 +59,16 @@ class SellItemView: UIView {
         itemImage.image = UIImage(named: "addPhotoImage")
         itemImage.contentMode = .scaleAspectFit
         itemImage.layer.cornerRadius = 10
+        itemImage.clipsToBounds = true
+        itemImage.isUserInteractionEnabled = true
+        itemImage.addGestureRecognizer(longPressGesture)
+        
         itemImage.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp_top).offset(10)
             make.centerX.equalTo(scrollView.snp_centerX)
-            make.leading.equalTo(scrollView.snp_leading).offset(20)
-            make.trailing.equalTo(scrollView.snp_trailing).offset(-20)
-            make.height.equalTo(220)
+            make.leading.equalTo(scrollView.snp_leading).offset(30)
+            make.trailing.equalTo(scrollView.snp_trailing).offset(-30)
+            make.height.equalTo(240)
         }
     }
     
@@ -143,6 +152,10 @@ class SellItemView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
         addGestureRecognizer(tapGesture)
     }
+    
+    @objc private func showPhotoOptions() {
+        viewModel.sellItemDelegate?.imagePickerEvent()
+    }
 }
 
 extension SellItemView: UITextFieldDelegate {
@@ -173,3 +186,4 @@ extension SellItemView: UIPickerViewDataSource, UIPickerViewDelegate {
         viewModel.pickerViewDidSelect(row)
     }
 }
+

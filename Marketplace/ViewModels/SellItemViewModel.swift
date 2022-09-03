@@ -8,9 +8,15 @@
 import Foundation
 import UIKit.UIImage
 
+protocol SellItemDelegate: AnyObject {
+    func imagePickerEvent()
+}
+
 final class SellItemViewModel {
     
     private let categoryProvider: CategoryProvider
+    
+    weak var sellItemDelegate: SellItemDelegate?
     
     private var title = ""
     private var category = ""
@@ -48,6 +54,10 @@ final class SellItemViewModel {
     
     func setDescription(_ description: String) {
         self.description = description
+    }
+    
+    func setImage(_ image: UIImage) {
+        self.image = image
     }
 
 }
