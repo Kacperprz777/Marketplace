@@ -25,6 +25,9 @@
 		AA24B4C628BFBA8600EC7E3B /* SellItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */; };
 		AA24B4C828C0F2D500EC7E3B /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */; };
 		AA24B4CA28C1085500EC7E3B /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4C928C1085500EC7E3B /* BindingTextField.swift */; };
+		AA24B4CD28C34C1900EC7E3B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */; };
+		AA24B4CF28C34C4300EC7E3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */; };
+		AA24B4D128C34C6400EC7E3B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
@@ -56,6 +59,9 @@
 		AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellItemViewModel.swift; sourceTree = "<group>"; };
 		AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		AA24B4C928C1085500EC7E3B /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
+		AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				AA24B49528BD2ABF00EC7E3B /* CategoryCellViewModel.swift */,
 				AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */,
 				AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */,
+				AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 				AA24B48328BA21B000EC7E3B /* ForgotPasswordView.swift */,
 				AA24B48928BCBF0600EC7E3B /* ItemFeedView.swift */,
 				AA24B4C328BFBA6200EC7E3B /* SellItemView.swift */,
+				AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +211,7 @@
 				AA24B48128BA218A00EC7E3B /* ForgotPasswordViewController.swift */,
 				AA24B48D28BCBFA200EC7E3B /* ItemFeedViewController.swift */,
 				AA24B4C128BFBA1800EC7E3B /* SellItemViewController.swift */,
+				AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -324,12 +333,15 @@
 				AA24B4CA28C1085500EC7E3B /* BindingTextField.swift in Sources */,
 				AA24B49628BD2ABF00EC7E3B /* CategoryCellViewModel.swift in Sources */,
 				AA24B4C828C0F2D500EC7E3B /* UIButton+Extensions.swift in Sources */,
+				AA24B4D128C34C6400EC7E3B /* ProfileViewModel.swift in Sources */,
 				AA24B4C228BFBA1800EC7E3B /* SellItemViewController.swift in Sources */,
 				AA24B48228BA218A00EC7E3B /* ForgotPasswordViewController.swift in Sources */,
 				AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */,
 				AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */,
+				AA24B4CD28C34C1900EC7E3B /* ProfileView.swift in Sources */,
 				AA24B48A28BCBF0600EC7E3B /* ItemFeedView.swift in Sources */,
 				AA24B4BE28BF618A00EC7E3B /* ItemCellViewModel.swift in Sources */,
+				AA24B4CF28C34C4300EC7E3B /* ProfileViewController.swift in Sources */,
 				AA24B4BC28BE7CDE00EC7E3B /* ItemCell.swift in Sources */,
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
 				AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */,
