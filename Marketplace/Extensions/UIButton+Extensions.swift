@@ -26,4 +26,20 @@ extension UIButton {
         return button
     }
     
+    static func makeSignOutButton() -> UIButton {
+        let button = UIButton()
+        button.setTitle("Sign Out", for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        return button
+    }
+    
+    static func makeEditPhotoButton() -> UIButton {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold, scale: .large)
+        let boldPencil = UIImage(systemName: "pencil.circle.fill", withConfiguration: config)
+
+        button.setImage(boldPencil, for: .normal)
+        return button
+    }
 }
