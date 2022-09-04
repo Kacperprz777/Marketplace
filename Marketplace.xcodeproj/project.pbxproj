@@ -28,6 +28,8 @@
 		AA24B4CD28C34C1900EC7E3B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */; };
 		AA24B4CF28C34C4300EC7E3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */; };
 		AA24B4D128C34C6400EC7E3B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */; };
+		AA24B4D328C3C74900EC7E3B /* MarketplaceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4D228C3C74900EC7E3B /* MarketplaceTabBarController.swift */; };
+		AA24B4D628C3CF4400EC7E3B /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
@@ -62,6 +64,8 @@
 		AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		AA24B4D228C3C74900EC7E3B /* MarketplaceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceTabBarController.swift; sourceTree = "<group>"; };
+		AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -131,6 +135,14 @@
 			path = TextFields;
 			sourceTree = "<group>";
 		};
+		AA24B4D428C3C75100EC7E3B /* TabBars */ = {
+			isa = PBXGroup;
+			children = (
+				AA24B4D228C3C74900EC7E3B /* MarketplaceTabBarController.swift */,
+			);
+			path = TabBars;
+			sourceTree = "<group>";
+		};
 		AA5F5DE028B8C64400936E76 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +162,7 @@
 			children = (
 				AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */,
 				AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */,
+				AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,6 +205,7 @@
 		AAC85D0528B52B680024B6E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA24B4D428C3C75100EC7E3B /* TabBars */,
 				AA24B4CB28C20BB400EC7E3B /* TextFields */,
 				AA24B49228BD0C6900EC7E3B /* Cells */,
 				AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */,
@@ -353,10 +367,12 @@
 				AA24B4C628BFBA8600EC7E3B /* SellItemViewModel.swift in Sources */,
 				AA24B48C28BCBF3600EC7E3B /* ItemFeedViewModel.swift in Sources */,
 				AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */,
+				AA24B4D328C3C74900EC7E3B /* MarketplaceTabBarController.swift in Sources */,
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 				AA24B49128BD0B3900EC7E3B /* Category.swift in Sources */,
 				AA24B49428BD0CC100EC7E3B /* CategoryCell.swift in Sources */,
+				AA24B4D628C3CF4400EC7E3B /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

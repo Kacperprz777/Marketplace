@@ -127,7 +127,7 @@ class LoginScreenView: UIView {
     }
     
     @objc private func mainButtonTapped() {
-        print("mainButtonTapped")
+        viewModel.mainButtonTapped()
     }
     
     private func configureForgotPasswordButton() {

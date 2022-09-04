@@ -9,7 +9,7 @@ import Foundation
 
 final class ItemFeedViewModel {
         
-    init(categoryProvider: CategoryProvider) {
+    init(categoryProvider: CategoryProvider = CategoryProvider()) {
         self.categoryProvider = categoryProvider
     }
     

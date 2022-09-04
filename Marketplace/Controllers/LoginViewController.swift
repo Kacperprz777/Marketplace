@@ -11,7 +11,9 @@ import SnapKit
 class LoginViewController: UIViewController {
 
     private let welcomeView = WelcomeView()
-    private let loginScreenView = LoginScreenView(viewModel: LoginScreenViewModel())
+    lazy private var loginScreenView = LoginScreenView(viewModel: viewModel)
+    
+    private var viewModel = LoginScreenViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,6 +28,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+        
+        viewModel.resetWindowCallback = { [weak self] in
+            self?.resetWindow(with: MarketplaceTabBarController())
+        }
     }
     
     private func configureVC() {
@@ -49,7 +55,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginScreenPresentForgotPasswordVC {
     func forgotPasswordVC() {
-        let forgotPasswordVC = UINavigationController(rootViewController: ForgotPasswordViewController(viewModel: ForgotPasswordViewModel()))
+        let forgotPasswordVC = UINavigationController(rootViewController: ForgotPasswordViewController())
         present(forgotPasswordVC, animated: true)
     }
 }
