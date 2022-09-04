@@ -9,11 +9,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import UIKit.UIImage
 
 final class FirebaseManager {
     
     // MARK: Firebase Authentication
-
+    
     
     func createNewUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authDataResult, error in
@@ -87,16 +88,83 @@ final class FirebaseManager {
             }
     }
     
-
+    func updateDatabaseUser(displayName: String,
+                            photoURL: String,
+                            completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(FirebaseManager.usersCollection)
+            .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(true))
+                }
+            }
+    }
+    
+    func createItem(itemName: String,
+                    price: Double,
+                    category: Category,
+                    displayName: String,
+                    completion: @escaping (Result<String, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        let documentRef = db.collection(FirebaseManager.itemsCollection).document()
+        db.collection(FirebaseManager.itemsCollection)
+            .document(documentRef.documentID)
+            .setData(["itemName":itemName,
+                      "price": price,
+                      "itemId":documentRef.documentID,
+                      "listedDate": Timestamp(date: Date()),
+                      "sellerId": user.uid,
+                      "categoryName": category.name]) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(documentRef.documentID))
+                }
+            }
+    }
+    
+    func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+        db.collection(FirebaseManager.itemsCollection).document(item.itemId).delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    func fetchUserItems(userId: String, completion: @escaping (Result<[Item], Error>) -> ()) {
+        db.collection(FirebaseManager.itemsCollection).whereField("sellerId", isEqualTo: userId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let items = snapshot.documents.map { Item($0.data()) }
+                completion(.success(items.sorted{$0.listedDate.seconds > $1.listedDate.seconds}))
+            }
+        }
+    }
+    
+    func fetchItemsInCategory(categoryName: String, completion: @escaping (Result<[Item], Error>) -> ()) {
+        db.collection(FirebaseManager.itemsCollection).whereField("categoryName", isEqualTo: categoryName).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let items = snapshot.documents.map { Item($0.data()) }
+                completion(.success(items.sorted{$0.listedDate.seconds > $1.listedDate.seconds}))
+            }
+        }
+    }
+    
+    
+    
+    
     
     // MARK: Firebase Storage
-
-
     
-    
-    
-    
-    
+    //private let storageRef = Storage.storage().reference()
     
     
 }
