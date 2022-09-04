@@ -15,7 +15,6 @@ final class FirebaseManager {
     
     // MARK: Firebase Authentication
     
-    
     func createNewUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authDataResult, error in
             if let error = error {
@@ -84,12 +83,10 @@ final class FirebaseManager {
                 } else {
                     completion(.success(true))
                 }
-                
             }
     }
     
-    func updateDatabaseUser(displayName: String,
-                            photoURL: String,
+    func updateDatabaseUser(photoURL: String,
                             completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return }
@@ -106,7 +103,6 @@ final class FirebaseManager {
     func createItem(itemName: String,
                     price: Double,
                     category: Category,
-                    displayName: String,
                     completion: @escaping (Result<String, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         let documentRef = db.collection(FirebaseManager.itemsCollection).document()
@@ -164,7 +160,37 @@ final class FirebaseManager {
     
     // MARK: Firebase Storage
     
-    //private let storageRef = Storage.storage().reference()
+    private let storageRef = Storage.storage().reference()
     
-    
+    func uploadPhoto(userId: String? = nil, itemId: String? = nil, image: UIImage, completion: @escaping (Result<URL, Error>) -> ()) {
+        
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+          return
+        }
+        
+        var photoReference: StorageReference!
+        
+        if let userId = userId { // coming from ProfileView
+          photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
+        } else if let itemId = itemId { // coming from SellItemView
+          photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
+        }
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        let _ = photoReference.putData(imageData, metadata: metadata) { (metadata, error) in
+          if let error = error {
+            completion(.failure(error))
+          } else if let _ = metadata {
+            photoReference.downloadURL { (url, error) in
+              if let error = error {
+                completion(.failure(error))
+              } else if let url = url {
+                completion(.success(url))
+              }
+            }
+          }
+        }
+    }
 }

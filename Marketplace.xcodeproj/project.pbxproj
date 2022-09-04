@@ -32,6 +32,7 @@
 		AA24B4D628C3CF4400EC7E3B /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */; };
 		AA24B4D928C4C66800EC7E3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA24B4D828C4C66800EC7E3B /* GoogleService-Info.plist */; };
 		AA24B4DB28C4F2EF00EC7E3B /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4DA28C4F2EF00EC7E3B /* FirebaseManager.swift */; };
+		AA24B4DD28C537F000EC7E3B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AA5F5DE928B92EF400936E76 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */; };
@@ -69,6 +70,7 @@
 		AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AA24B4D828C4C66800EC7E3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA24B4DA28C4F2EF00EC7E3B /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				AA5F5DE828B92EF400936E76 /* UITextField+Extensions.swift */,
 				AA24B4C728C0F2D500EC7E3B /* UIButton+Extensions.swift */,
 				AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */,
+				AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				AA24B4C628BFBA8600EC7E3B /* SellItemViewModel.swift in Sources */,
 				AA24B48C28BCBF3600EC7E3B /* ItemFeedViewModel.swift in Sources */,
 				AA24B4C028BF62D700EC7E3B /* Item.swift in Sources */,
+				AA24B4DD28C537F000EC7E3B /* UIImage+Extensions.swift in Sources */,
 				AA24B4D328C3C74900EC7E3B /* MarketplaceTabBarController.swift in Sources */,
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
