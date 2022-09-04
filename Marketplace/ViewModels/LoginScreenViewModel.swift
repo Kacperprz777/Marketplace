@@ -14,6 +14,8 @@ final class LoginScreenViewModel {
         case register
     }
     
+    var resetWindowCallback: () -> () = { }
+    
     private(set) var state: ViewState = .signIn
     
     var isInSignInState: Bool {
@@ -36,6 +38,9 @@ final class LoginScreenViewModel {
         }
     }
     
+    func mainButtonTapped() {
+        resetWindowCallback()
+    }
     
     
     

@@ -10,18 +10,8 @@ import UIKit
 class ForgotPasswordViewController: UIViewController {
 
     
-    var viewModel: ForgotPasswordViewModel!
-    lazy private(set) var forgotPasswordView = ForgotPasswordView(viewModel: viewModel )
-    
-    init(viewModel: ForgotPasswordViewModel) {
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = viewModel
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var viewModel = ForgotPasswordViewModel()
+    lazy private(set) var forgotPasswordView = ForgotPasswordView(viewModel: viewModel)
     
     override func loadView() {
         view = forgotPasswordView

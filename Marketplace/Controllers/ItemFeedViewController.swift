@@ -9,18 +9,8 @@ import UIKit
 
 class ItemFeedViewController: UIViewController {
 
-    var viewModel: ItemFeedViewModel!
+    private var viewModel = ItemFeedViewModel()
     lazy private(set) var itemFeedView = ItemFeedView(viewModel: viewModel)
-    
-    init(viewModel: ItemFeedViewModel) {
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = viewModel
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func loadView() {
         view = itemFeedView
