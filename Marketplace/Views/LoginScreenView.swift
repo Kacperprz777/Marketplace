@@ -53,8 +53,8 @@ class LoginScreenView: UIView {
         logoImage.snp.makeConstraints { make in
             make.height.equalTo(self).multipliedBy(0.3)
             make.width.equalTo(self).multipliedBy(0.4)
-            make.top.equalTo(scrollView.snp_top).offset(10)
-            make.centerX.equalTo(scrollView.snp_centerX)
+            make.top.equalTo(scrollView.snp.top).offset(10)
+            make.centerX.equalTo(scrollView.snp.centerX)
         }
     }
     
@@ -74,9 +74,9 @@ class LoginScreenView: UIView {
         scrollView.addSubview(segmentedControl)
         
         segmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(logoImage.snp_bottom).offset(15)
+            make.top.equalTo(logoImage.snp.bottom).offset(15)
             make.leading.trailing.equalTo(scrollView).offset(55)
-            make.centerX.equalTo(logoImage.snp_centerX)
+            make.centerX.equalTo(logoImage.snp.centerX)
             make.height.equalTo(30)
         }
     }
@@ -110,7 +110,7 @@ class LoginScreenView: UIView {
         
         stackViewLoginInput.snp.makeConstraints { make in
             make.leading.trailing.equalTo(segmentedControl)
-            make.top.equalTo(segmentedControl.snp_bottom).offset(15)
+            make.top.equalTo(segmentedControl.snp.bottom).offset(15)
         }
     }
     
@@ -121,7 +121,7 @@ class LoginScreenView: UIView {
         
         mainButton.snp.makeConstraints { make in
             make.leading.trailing.equalTo(stackViewLoginInput)
-            make.top.equalTo(stackViewLoginInput.snp_bottom).offset(20)
+            make.top.equalTo(stackViewLoginInput.snp.bottom).offset(20)
             make.height.equalTo(45)
         }
     }

@@ -69,7 +69,7 @@ class ItemFeedView: UIView {
         itemFeedTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         itemFeedTableView.snp.makeConstraints { make in
-            make.top.equalTo(categoriesCollectionView.snp_bottom).offset(5)
+            make.top.equalTo(categoriesCollectionView.snp.bottom).offset(5)
             make.leading.trailing.equalTo(categoriesCollectionView)
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
         }

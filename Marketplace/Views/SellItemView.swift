@@ -64,10 +64,10 @@ class SellItemView: UIView {
         itemImage.addGestureRecognizer(longPressGesture)
         
         itemImage.snp.makeConstraints { make in
-            make.top.equalTo(scrollView.snp_top).offset(10)
-            make.centerX.equalTo(scrollView.snp_centerX)
-            make.leading.equalTo(scrollView.snp_leading).offset(30)
-            make.trailing.equalTo(scrollView.snp_trailing).offset(-30)
+            make.top.equalTo(scrollView.snp.top).offset(10)
+            make.centerX.equalTo(scrollView.snp.centerX)
+            make.leading.equalTo(scrollView.snp.leading).offset(30)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-30)
             make.height.equalTo(240)
         }
     }
@@ -81,7 +81,7 @@ class SellItemView: UIView {
         }
         
         titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(itemImage.snp_bottom).offset(10)
+            make.top.equalTo(itemImage.snp.bottom).offset(10)
             make.leading.trailing.equalTo(itemImage)
 
         }
@@ -94,7 +94,7 @@ class SellItemView: UIView {
         categoriesPicker.delegate = self
         
         categoriesPicker.snp.makeConstraints { make in
-            make.top.equalTo(titleTextField.snp_bottom).offset(10)
+            make.top.equalTo(titleTextField.snp.bottom).offset(10)
             make.leading.trailing.equalTo(titleTextField)
             make.height.equalTo(120)
         }
@@ -110,7 +110,7 @@ class SellItemView: UIView {
         }
 
         priceTextField.snp.makeConstraints { make in
-            make.top.equalTo(categoriesPicker.snp_bottom).offset(10)
+            make.top.equalTo(categoriesPicker.snp.bottom).offset(10)
             make.leading.trailing.equalTo(titleTextField)
         }
     }
@@ -124,7 +124,7 @@ class SellItemView: UIView {
         }
         
         descriptionTextField.snp.makeConstraints { make in
-            make.top.equalTo(priceTextField.snp_bottom).offset(10)
+            make.top.equalTo(priceTextField.snp.bottom).offset(10)
             make.leading.trailing.equalTo(titleTextField)
             make.height.equalTo(120)
         }
@@ -136,7 +136,7 @@ class SellItemView: UIView {
         sellButton.addTarget(self, action: #selector(sellButtonTapped), for: .touchUpInside)
         
         sellButton.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTextField.snp_bottom).offset(20)
+            make.top.equalTo(descriptionTextField.snp.bottom).offset(20)
             make.centerX.equalTo(scrollView)
             make.width.equalTo(150)
             make.height.equalTo(40)

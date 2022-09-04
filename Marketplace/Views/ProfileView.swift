@@ -56,8 +56,8 @@ class ProfileView: UIView {
         editPhotoButton.addTarget(self, action: #selector(editPhotoButtonTapped), for: .touchUpInside)
 
         editPhotoButton.snp.makeConstraints { make in
-            make.leading.equalTo(profileImage.snp_trailing).offset(-20)
-            make.top.equalTo(profileImage.snp_top).offset(110)
+            make.leading.equalTo(profileImage.snp.trailing).offset(-20)
+            make.top.equalTo(profileImage.snp.top).offset(110)
         }
     }
     
@@ -66,8 +66,8 @@ class ProfileView: UIView {
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
         
         signOutButton.snp.makeConstraints { make in
-            make.leading.equalTo(editPhotoButton.snp_trailing)
-            make.top.equalTo(editPhotoButton.snp_top).offset(-50)
+            make.leading.equalTo(editPhotoButton.snp.trailing)
+            make.top.equalTo(editPhotoButton.snp.top).offset(-50)
 
         }
     }
@@ -81,7 +81,7 @@ class ProfileView: UIView {
         myItemsTableView.layer.cornerRadius = 10
 
         myItemsTableView.snp.makeConstraints { make in
-            make.top.equalTo(profileImage.snp_bottom).offset(40)
+            make.top.equalTo(profileImage.snp.bottom).offset(40)
             make.leading.equalTo(safeAreaLayoutGuide).offset(10)
             make.trailing.equalTo(safeAreaLayoutGuide).offset(-10)
             make.bottom.equalTo(safeAreaLayoutGuide)

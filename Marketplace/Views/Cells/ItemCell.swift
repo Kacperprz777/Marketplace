@@ -47,7 +47,7 @@ class ItemCell: UITableViewCell {
         
         itemNameLabel.snp.makeConstraints { make in
             make.top.equalTo(self).offset(15)
-            make.leading.equalTo(itemImage.snp_trailing).offset(15)
+            make.leading.equalTo(itemImage.snp.trailing).offset(15)
         }
     }
     
@@ -55,8 +55,8 @@ class ItemCell: UITableViewCell {
         contentView.addSubview(dateLabel)
         dateLabel.text = "dateLabel"
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemNameLabel.snp_bottom)
-            make.leading.equalTo(itemImage.snp_trailing).offset(15)
+            make.top.equalTo(itemNameLabel.snp.bottom)
+            make.leading.equalTo(itemImage.snp.trailing).offset(15)
         }
     }
     

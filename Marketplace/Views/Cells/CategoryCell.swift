@@ -47,7 +47,7 @@ class CategoryCell: UICollectionViewCell {
         contentView.addSubview(categoryNameLabel)
         
         categoryNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(categoryImage.snp_bottom).offset(-15)
+            make.top.equalTo(categoryImage.snp.bottom).offset(-15)
             make.trailing.leading.bottom.equalTo(self)
         }
     }
