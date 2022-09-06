@@ -9,11 +9,31 @@ import Foundation
 
 final class ForgotPasswordViewModel {
     
-    var onSendNewPasswordButtonTapped: () -> Void = {}
+    weak var firebaseManager: FirebaseManager?
+    private var email = ""
+    var error: ObservableObject<String?> = ObservableObject(nil)
+    var success: ObservableObject<String?> = ObservableObject(nil)
     
-    func resetPassword(withEmail: String) {
-        
-        onSendNewPasswordButtonTapped()
+    init(firebaseManager: FirebaseManager) {
+        self.firebaseManager = firebaseManager
     }
-
+    
+    func setEmail(_ text:String) {
+        self.email = text
+    }
+    
+    func resetPassword() {
+        if !email.isEmpty{
+            firebaseManager?.resetUserPassword(with: email, completion: {[weak self] result in
+                switch result {
+                case .failure(let error):
+                    self?.error.value = error.localizedDescription
+                case .success(_):
+                    self?.success.value = "Password has been reset"
+                }
+            })
+        }
+        
+    }
+    
 }

@@ -170,9 +170,9 @@ final class FirebaseManager {
         
         var photoReference: StorageReference!
         
-        if let userId = userId { // coming from ProfileView
+        if let userId = userId { // coming from ProfileViewModel
           photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-        } else if let itemId = itemId { // coming from SellItemView
+        } else if let itemId = itemId { // coming from SellItemViewModel
           photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
         }
         

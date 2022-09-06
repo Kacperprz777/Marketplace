@@ -9,9 +9,10 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
 
+    private let firebaseManager = FirebaseManager()
     
-    var viewModel = ForgotPasswordViewModel()
-    lazy private(set) var forgotPasswordView = ForgotPasswordView(viewModel: viewModel)
+    lazy private(set) var viewModel = ForgotPasswordViewModel(firebaseManager: firebaseManager)
+    lazy private var forgotPasswordView = ForgotPasswordView(viewModel: viewModel)
     
     override func loadView() {
         view = forgotPasswordView
@@ -21,14 +22,21 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureNavigationBar()
-        
-        viewModel.onSendNewPasswordButtonTapped = { [weak self] in
-            print("password has been reset")
-            self?.dismiss(animated: true)
-            
+        setupBinders()
+    }
+    
+    private func setupBinders() {
+        viewModel.error.bind { [weak self] error in
+            guard let error = error else { return }
+                self?.showAlert(title: nil, message: error)
         }
         
-        
+        viewModel.success.bind { [weak self] succes in
+            guard let succes = succes else { return }
+                self?.showAlert(title: nil, message: succes) { _ in
+                    self?.dismiss(animated: true)
+                }
+        }
     }
     
     private func configureVC() {

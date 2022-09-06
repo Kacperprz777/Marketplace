@@ -12,7 +12,7 @@ class ForgotPasswordView: UIView {
 
     private let appTitleImage = UIImageView()
     private let resetPasswordLabel = UILabel()
-    private let emailTextField = UITextField.makeTextfield(placeholder: "Email")
+    private let emailTextField = BindingTextField(placeholderText: "Email")
     private let sendNewPasswordButton = UIButton()
     
     private(set) var viewModel: ForgotPasswordViewModel
@@ -62,6 +62,10 @@ class ForgotPasswordView: UIView {
     private func configureEmailTextField() {
         addSubview(emailTextField)
         
+        emailTextField.bind { [weak self] text in
+            self?.viewModel.setEmail(text)
+        }
+        
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(resetPasswordLabel.snp.bottom).offset(25)
             make.trailing.leading.equalTo(resetPasswordLabel)
@@ -88,7 +92,7 @@ class ForgotPasswordView: UIView {
     }
     
     @objc private func sendNewPasswordButtonTapped() {
-        viewModel.onSendNewPasswordButtonTapped()
+        viewModel.resetPassword()
     }
     
     
