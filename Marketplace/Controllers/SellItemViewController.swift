@@ -9,8 +9,10 @@ import UIKit
 
 class SellItemViewController: UIViewController {
 
+    private let firebaseManager = FirebaseManager()
+    
     lazy private(set) var sellItemView = SellItemView(viewModel: viewModel)
-    private var viewModel = SellItemViewModel()
+    lazy private var viewModel = SellItemViewModel(firebaseEventsManager: firebaseManager)
     
     override func loadView() {
         view = sellItemView
@@ -19,6 +21,10 @@ class SellItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+    }
+    
+    override func showAlert(message: String) {
+        showAlert(title: nil, message: message)
     }
     
     private func configureVC() {
@@ -57,7 +63,6 @@ extension SellItemViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         sellItemView.itemImage.image = image
-        viewModel.setImage(image)
         dismiss(animated: true)
     }
     

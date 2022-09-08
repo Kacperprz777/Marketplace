@@ -92,6 +92,8 @@ class SellItemView: UIView {
         categoriesPicker.layer.cornerRadius = 10
         categoriesPicker.dataSource = self
         categoriesPicker.delegate = self
+        categoriesPicker.selectRow(0, inComponent: 0, animated: true)
+        pickerView(categoriesPicker, didSelectRow: 0, inComponent: 0)
         
         categoriesPicker.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom).offset(10)
@@ -145,9 +147,37 @@ class SellItemView: UIView {
     }
     
     @objc private func sellButtonTapped() {
-        
+        endEditing(true)
+        sellButton.isEnabled = false
+        enableSellButton()
+        guard let image = itemImage.image else { return }
+        let resizedImage = UIImage.resizeImage(originalImage: image, rect: itemImage.bounds)
+        let imageData = resizedImage.jpegData(compressionQuality: 0.8)
+        viewModel.sellItem(imageData: imageData) { [weak self] error in
+            if let error = error {
+                self?.showAlert(message: error.localizedDescription)
+
+            }
+            self?.itemImage.image = UIImage(named: "addPhotoImage")
+            self?.titleTextField.text = ""
+            self?.priceTextField.text = ""
+            self?.descriptionTextField.text = ""
+            self?.resetPickerView()
+            self?.sellButton.isEnabled = true
+            self?.showAlert(message: "Item added successfully!")
+        }
     }
     
+    private func enableSellButton() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.sellButton.isEnabled = true
+        }
+    }
+    
+    private func resetPickerView() {
+        categoriesPicker.selectRow(0, inComponent: 0, animated: true)
+        pickerView(categoriesPicker, didSelectRow: 0, inComponent: 0)
+    }
     private func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
         addGestureRecognizer(tapGesture)

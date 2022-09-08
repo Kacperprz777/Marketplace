@@ -6,26 +6,26 @@
 //
 
 import Foundation
-import UIKit.UIImage
 
 protocol SellItemDelegate: AnyObject {
     func imagePickerEvent()
 }
 
 final class SellItemViewModel {
-    
+        
     private let categoryProvider: CategoryProvider
     
     weak var sellItemDelegate: SellItemDelegate?
+    weak var firebaseEventsManager: FirebaseManagerProtocol?
     
     private var title = ""
     private var category = ""
     private var price = 0.0
     private var description = ""
-    private var image = UIImage()
     
-    init(categoryProvider: CategoryProvider = CategoryProvider()) {
+    init(categoryProvider: CategoryProvider = CategoryProvider(), firebaseEventsManager: FirebaseManagerProtocol) {
         self.categoryProvider = categoryProvider
+        self.firebaseEventsManager = firebaseEventsManager
     }
     
     lazy private(set) var  categoryNames = categoryProvider.getCategories().map {
@@ -56,8 +56,35 @@ final class SellItemViewModel {
         self.description = description
     }
     
-    func setImage(_ image: UIImage) {
-        self.image = image
+    func sellItem(imageData: Data?, handler: @escaping (Error?) -> Void ) {
+        guard let imageData = imageData, !title.isEmpty, !category.isEmpty, !description.isEmpty, price > 0.0  else { return }
+        
+        firebaseEventsManager?.createItem(itemName: title, price: price, category: category, completion: { [weak self] createItemResult in
+            switch createItemResult {
+            case .failure(let error):
+                //alert
+                print(error.localizedDescription)
+                break
+            case .success(let documentId):
+                self?.firebaseEventsManager?.uploadItemPhoto(itemId: documentId, imageData: imageData, completion: {[weak self] uploadItemPhotoResult in
+                    switch uploadItemPhotoResult {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let url):
+                        self?.firebaseEventsManager?.updateItemImageURL(url, documentId: documentId)
+                        self?.resetItemProperties()
+                        handler(nil)
+                    }
+                })
+            }
+        })
+    }
+    
+    private func resetItemProperties() {
+        title = ""
+        category = ""
+        price = 0.0
+        description = ""
     }
 
 }

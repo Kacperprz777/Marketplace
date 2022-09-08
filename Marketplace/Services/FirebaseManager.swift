@@ -9,9 +9,23 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import UIKit.UIImage
 
-final class FirebaseManager {
+protocol FirebaseManagerProtocol: AnyObject {
+    
+    func createNewUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ())
+    func signExistingUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ())
+    func resetUserPassword(with email: String, completion: @escaping (Result<Void, Error>) -> ())
+    func createDatabaseUser(authDataResult: AuthDataResult , completion: @escaping (Result<Bool, Error>) -> ())
+    func createItem(itemName: String, price: Double, category: String, completion: @escaping (Result<String, Error>) -> ())
+    func uploadItemPhoto(itemId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ())
+    func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ())
+    func fetchUserItems(userId: String, completion: @escaping (Result<[Item], Error>) -> ())
+    func fetchItemsInCategory(categoryName: String, completion: @escaping (Result<[Item], Error>) -> ())
+    func uploadProfilePhoto(userId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ())
+    func updateItemImageURL(_ url: String, documentId: String)
+}
+
+final class FirebaseManager: FirebaseManagerProtocol {
     
     // MARK: Firebase Authentication
     
@@ -102,7 +116,7 @@ final class FirebaseManager {
     
     func createItem(itemName: String,
                     price: Double,
-                    category: Category,
+                    category: String,
                     completion: @escaping (Result<String, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         let documentRef = db.collection(FirebaseManager.itemsCollection).document()
@@ -113,13 +127,23 @@ final class FirebaseManager {
                       "itemId":documentRef.documentID,
                       "listedDate": Timestamp(date: Date()),
                       "sellerId": user.uid,
-                      "categoryName": category.name]) { (error) in
+                      "categoryName": category]) { (error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
                     completion(.success(documentRef.documentID))
                 }
             }
+    }
+    
+    func updateItemImageURL(_ url: String, documentId: String) {
+        db.collection(FirebaseManager.itemsCollection).document(documentId).updateData(["imageURL" : url]) { error in
+            if let error = error {
+                print("Fail to update item \(error.localizedDescription)")
+            } else {
+                print("all went well with the update")
+            }
+        }
     }
     
     func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
@@ -162,35 +186,52 @@ final class FirebaseManager {
     
     private let storageRef = Storage.storage().reference()
     
-    func uploadPhoto(userId: String? = nil, itemId: String? = nil, image: UIImage, completion: @escaping (Result<URL, Error>) -> ()) {
-        
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
-          return
-        }
+    func uploadItemPhoto(itemId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ()) {
         
         var photoReference: StorageReference!
-        
-        if let userId = userId { // coming from ProfileViewModel
-          photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-        } else if let itemId = itemId { // coming from SellItemViewModel
-          photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
-        }
+        photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
         
         let _ = photoReference.putData(imageData, metadata: metadata) { (metadata, error) in
-          if let error = error {
-            completion(.failure(error))
-          } else if let _ = metadata {
-            photoReference.downloadURL { (url, error) in
-              if let error = error {
+            if let error = error {
                 completion(.failure(error))
-              } else if let url = url {
-                completion(.success(url))
-              }
+            } else if let _ = metadata {
+                photoReference.downloadURL { (url, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else if let url = url {
+                        completion(.success(url.absoluteString))
+                    }
+                }
             }
-          }
         }
     }
+    
+    func uploadProfilePhoto(userId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ()) {
+        
+        var photoReference: StorageReference!
+        photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        let _ = photoReference.putData(imageData, metadata: metadata) { (metadata, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let _ = metadata {
+                photoReference.downloadURL { (url, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else if let url = url {
+                        completion(.success(url.absoluteString))
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
 }

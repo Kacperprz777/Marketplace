@@ -35,6 +35,7 @@
 		AA24B4DD28C537F000EC7E3B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */; };
 		AA24B4DF28C5C08300EC7E3B /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4DE28C5C08300EC7E3B /* UIViewController+Alerts.swift */; };
 		AA24B4E128C72B3700EC7E3B /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4E028C72B3700EC7E3B /* ObservableObject.swift */; };
+		AA24B4E328CA551400EC7E3B /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24B4E228CA551400EC7E3B /* UIResponder+Extensions.swift */; };
 		AA5F5DDF28B6349100936E76 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */; };
 		AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */; };
 		AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85CED28AEAFA10024B6E9 /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 		AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		AA24B4DE28C5C08300EC7E3B /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		AA24B4E028C72B3700EC7E3B /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
+		AA24B4E228CA551400EC7E3B /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
 		AA5F5DDE28B6349100936E76 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		AA5F5DE128B8C74200936E76 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		AAC85CEA28AEAFA10024B6E9 /* Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +182,7 @@
 				AA24B4D528C3CF4400EC7E3B /* UIViewController+Extensions.swift */,
 				AA24B4DC28C537F000EC7E3B /* UIImage+Extensions.swift */,
 				AA24B4DE28C5C08300EC7E3B /* UIViewController+Alerts.swift */,
+				AA24B4E228CA551400EC7E3B /* UIResponder+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				AA24B4E128C72B3700EC7E3B /* ObservableObject.swift in Sources */,
 				AA24B4D328C3C74900EC7E3B /* MarketplaceTabBarController.swift in Sources */,
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
+				AA24B4E328CA551400EC7E3B /* UIResponder+Extensions.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 				AA24B49128BD0B3900EC7E3B /* Category.swift in Sources */,
 				AA24B49428BD0CC100EC7E3B /* CategoryCell.swift in Sources */,
