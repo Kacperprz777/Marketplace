@@ -20,9 +20,10 @@ protocol FirebaseManagerProtocol: AnyObject {
     func uploadItemPhoto(itemId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ())
     func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ())
     func fetchUserItems(userId: String, completion: @escaping (Result<[Item], Error>) -> ())
-    func fetchItemsInCategory(categoryName: String, completion: @escaping (Result<[Item], Error>) -> ())
     func uploadProfilePhoto(userId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ())
     func updateItemImageURL(_ url: String, documentId: String)
+    func addSnapshotListenerOnItemsCollection(completion: @escaping ([Item]) -> ())
+    func removeListener()
 }
 
 final class FirebaseManager: FirebaseManagerProtocol {
@@ -83,6 +84,8 @@ final class FirebaseManager: FirebaseManagerProtocol {
     static let usersCollection = "users"
     
     private let db = Firestore.firestore()
+    
+    private var listener: ListenerRegistration?
     
     func createDatabaseUser(authDataResult: AuthDataResult , completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let email = authDataResult.user.email else { return }
@@ -167,19 +170,22 @@ final class FirebaseManager: FirebaseManagerProtocol {
         }
     }
     
-    func fetchItemsInCategory(categoryName: String, completion: @escaping (Result<[Item], Error>) -> ()) {
-        db.collection(FirebaseManager.itemsCollection).whereField("categoryName", isEqualTo: categoryName).getDocuments { (snapshot, error) in
+    func addSnapshotListenerOnItemsCollection(completion: @escaping ([Item]) -> ()) {
+        listener = db.collection(FirebaseManager.itemsCollection).addSnapshotListener({ (snapshot, error) in
             if let error = error {
-                completion(.failure(error))
-            } else if let snapshot = snapshot {
-                let items = snapshot.documents.map { Item($0.data()) }
-                completion(.success(items.sorted{$0.listedDate.seconds > $1.listedDate.seconds}))
+                print("addSnapshotListenerError: \(error.localizedDescription)")
             }
-        }
+            else if let snapshot = snapshot {
+                let items = snapshot.documents.map { Item($0.data()) }
+                    .sorted{ $0.listedDate.seconds > $1.listedDate.seconds }
+                completion(items)
+            }
+        })
     }
     
-    
-    
+    func removeListener() {
+        listener?.remove()
+    }
     
     
     // MARK: Firebase Storage

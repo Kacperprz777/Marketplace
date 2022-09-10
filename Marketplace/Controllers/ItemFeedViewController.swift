@@ -9,7 +9,9 @@ import UIKit
 
 class ItemFeedViewController: UIViewController {
 
-    private var viewModel = ItemFeedViewModel()
+    private let firebaseManager = FirebaseManager()
+    
+    lazy private var viewModel = ItemFeedViewModel(firebaseEventsManager: firebaseManager)
     lazy private(set) var itemFeedView = ItemFeedView(viewModel: viewModel)
     
     override func loadView() {
@@ -20,6 +22,16 @@ class ItemFeedViewController: UIViewController {
         super.viewDidLoad()
         configureVC()
         viewModel.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.viewDidAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.viewWillDisappear()
     }
     
     private func configureVC() {

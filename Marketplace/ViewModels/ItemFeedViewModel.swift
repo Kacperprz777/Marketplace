@@ -9,21 +9,40 @@ import Foundation
 
 final class ItemFeedViewModel {
         
-    init(categoryProvider: CategoryProvider = CategoryProvider()) {
-        self.categoryProvider = categoryProvider
-    }
+    weak var firebaseEventsManager: FirebaseManagerProtocol?
     
+    init(firebaseEventsManager: FirebaseManagerProtocol, categoryProvider: CategoryProvider = CategoryProvider()) {
+        self.categoryProvider = categoryProvider
+        self.firebaseEventsManager = firebaseEventsManager
+    }
+
     func viewDidLoad() {
         loadCategoriesCollectionViewCells()
     }
     
+    func viewDidAppear() {
+        firebaseEventsManager?.addSnapshotListenerOnItemsCollection(completion: { [weak self] items in
+            self?.items = items
+        })
+    }
+    
+    func viewWillDisappear() {
+        firebaseEventsManager?.removeListener()
+    }
+    
     // MARK: UICollectionView
     
-    private var collectionViewCellsViewModels: [CategoryCellViewModel] = []
     private let categoryProvider: CategoryProvider
+    lazy private var categories = categoryProvider.getCategories()
+    lazy private var selectedCategoryName = categories.first?.name {
+        didSet {
+            items = { self.items }()
+        }
+    }
 
+    private var collectionViewCellsViewModels: [CategoryCellViewModel] = []
+    
     private func loadCategoriesCollectionViewCells() {
-        let categories = categoryProvider.getCategories()
         collectionViewCellsViewModels = categories.map {
             CategoryCellViewModel($0)
         }
@@ -37,6 +56,11 @@ final class ItemFeedViewModel {
         return collectionViewCellsViewModels.count
     }
     
+    func didSelectItemAt(_ indexPath: IndexPath) {
+        selectedCategoryName = categories[indexPath.row].name
+    }
+    
+    
     // MARK: UITableView
     
     enum tableViewState {
@@ -44,8 +68,17 @@ final class ItemFeedViewModel {
         case notEmpty
     }
     
+    private var items = [Item]() {
+        didSet {
+            let filteredItems = items.filter { $0.categoryName == selectedCategoryName}
+            tableViewCellViewModels = filteredItems.map { ItemCellViewModel($0) }
+        }
+    }
+    
     var reloadTableViewClosure: () -> Void = { }
+    
     private var state: tableViewState = .empty
+    
     private var tableViewCellViewModels = [ItemCellViewModel]() {
         didSet {
             toogleState()
