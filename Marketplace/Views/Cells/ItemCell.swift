@@ -9,17 +9,22 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
-    private var itemImage = UIImageView()
+    var itemImage = UIImageView()
     private var itemNameLabel = UILabel()
-    private var dateLabel = UILabel()
+    //private var dateLabel = UILabel()
     private var priceLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "itemCell")
         configureItemImage()
         configureItemNameLabel()
-        configureDateLabel()
+        //configureDateLabel()
         configurePriceLabel()
+    }
+    
+    override func prepareForReuse() {
+        itemImage.image = nil
+        itemImage.cancelImageLoad()
     }
     
     required init?(coder: NSCoder) {
@@ -30,8 +35,6 @@ class ItemCell: UITableViewCell {
         contentView.addSubview(itemImage)
         itemImage.contentMode = .scaleAspectFit
         itemImage.image = UIImage(systemName: "photo.fill")
-        itemImage.backgroundColor = .systemOrange
-        itemImage.layer.cornerRadius = 10
         
         itemImage.snp.makeConstraints { make in
             make.top.leading.equalTo(self).offset(10)
@@ -51,14 +54,14 @@ class ItemCell: UITableViewCell {
         }
     }
     
-    private func configureDateLabel() {
-        contentView.addSubview(dateLabel)
-        dateLabel.text = "dateLabel"
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(itemNameLabel.snp.bottom)
-            make.leading.equalTo(itemImage.snp.trailing).offset(15)
-        }
-    }
+    //    private func configureDateLabel() {
+    //        contentView.addSubview(dateLabel)
+    //        dateLabel.text = "dateLabel"
+    //        dateLabel.snp.makeConstraints { make in
+    //            make.top.equalTo(itemNameLabel.snp.bottom)
+    //            make.leading.equalTo(itemImage.snp.trailing).offset(15)
+    //        }
+    //    }
     
     private func configurePriceLabel() {
         contentView.addSubview(priceLabel)
@@ -70,10 +73,9 @@ class ItemCell: UITableViewCell {
     }
     
     func update(with viewModel: ItemCellViewModel) {
-        //itemImage
         //dateLabel
         itemNameLabel.text = viewModel.itemName
-        priceLabel.text = String(viewModel.price)
+        priceLabel.text = viewModel.price
         
         
         

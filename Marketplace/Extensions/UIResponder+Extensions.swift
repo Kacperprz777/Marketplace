@@ -11,4 +11,8 @@ extension UIResponder {
     @objc func showAlert(message: String) {
         self.next?.showAlert(message: message)
     }
+    
+    @objc func signOut() {
+        self.next?.signOut()
+    }
 }

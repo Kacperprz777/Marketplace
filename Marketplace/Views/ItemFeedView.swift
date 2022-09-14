@@ -128,8 +128,9 @@ extension ItemFeedView: UITableViewDataSource {
         }
         
         let cellViewModel = viewModel.getTableViewCellViewModel(at: indexPath)
-        
         cell.update(with: cellViewModel)
+        cell.itemImage.loadImage(at: URL(string: cellViewModel.imageURL))
+        
         return cell
     }
     

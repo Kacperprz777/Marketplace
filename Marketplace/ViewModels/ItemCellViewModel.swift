@@ -9,7 +9,7 @@ import Foundation
 
 struct ItemCellViewModel {
     
-    private let item: Item
+    private(set) var item: Item
     
     init(_ item: Item) {
         self.item = item
@@ -19,8 +19,8 @@ struct ItemCellViewModel {
         item.itemName
     }
     
-    var price: Double {
-        item.price
+    var price: String {
+        "$\(item.price)"
     }
     
     var imageURL: String {

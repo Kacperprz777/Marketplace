@@ -29,8 +29,10 @@ extension UIButton {
     static func makeSignOutButton() -> UIButton {
         let button = UIButton()
         button.setTitle("Sign Out", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.backgroundColor = .systemRed
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.layer.cornerRadius = 10
         return button
     }
     

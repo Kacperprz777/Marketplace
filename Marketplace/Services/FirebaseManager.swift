@@ -24,18 +24,33 @@ protocol FirebaseManagerProtocol: AnyObject {
     func updateItemImageURL(_ url: String, documentId: String)
     func addSnapshotListenerOnItemsCollection(completion: @escaping ([Item]) -> ())
     func removeListener()
+    func updateDatabaseUser(photoURL: String, completion: @escaping (Result<Bool, Error>) -> ())
+    func createProfileChangeRequest(photoUrl: String)
+    func signOut()
+    var currentUserId: String? { get }
+    var currentUserProfileImageURL: URL? { get }
 }
 
 final class FirebaseManager: FirebaseManagerProtocol {
     
     // MARK: Firebase Authentication
     
+    private let auth = Auth.auth()
+    
+    var currentUserId: String? {
+        auth.currentUser?.uid
+    }
+    
+    var currentUserProfileImageURL: URL? {
+        auth.currentUser?.photoURL
+    }
+    
     func createNewUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authDataResult, error in
+        auth.createUser(withEmail: email, password: password) { [weak self] authDataResult, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                guard let user =  Auth.auth().currentUser else { return }
+                guard let user =  self?.auth.currentUser else { return }
                 user.sendEmailVerification() { error in
                     guard let error = error else { return }
                     print(error.localizedDescription)
@@ -57,24 +72,32 @@ final class FirebaseManager: FirebaseManagerProtocol {
     }
     
     func signExistingUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+        auth.signIn(withEmail: email, password: password) {[weak self] _, error in
             if let error = error {
                 print(error.localizedDescription)
                 completion(.failure(error))
             } else {
-                guard let user = Auth.auth().currentUser else { return }
+                guard let user = self?.auth.currentUser else { return }
                 completion(.success(user.isEmailVerified))
             }
         }
     }
     
     func resetUserPassword(with email: String, completion: @escaping (Result<Void, Error>) -> ()) {
-        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+        auth.sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
             }
+        }
+    }
+    
+    func signOut() {
+        do {
+            try auth.signOut()
+        } catch {
+            print(error)
         }
     }
     
@@ -106,7 +129,7 @@ final class FirebaseManager: FirebaseManagerProtocol {
     func updateDatabaseUser(photoURL: String,
                             completion: @escaping (Result<Bool, Error>) -> ()) {
         
-        guard let user = Auth.auth().currentUser else { return }
+        guard let user = auth.currentUser else { return }
         db.collection(FirebaseManager.usersCollection)
             .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
                 if let error = error {
@@ -121,7 +144,7 @@ final class FirebaseManager: FirebaseManagerProtocol {
                     price: Double,
                     category: String,
                     completion: @escaping (Result<String, Error>) -> ()) {
-        guard let user = Auth.auth().currentUser else { return }
+        guard let user = auth.currentUser else { return }
         let documentRef = db.collection(FirebaseManager.itemsCollection).document()
         db.collection(FirebaseManager.itemsCollection)
             .document(documentRef.documentID)
@@ -236,8 +259,18 @@ final class FirebaseManager: FirebaseManagerProtocol {
                 }
             }
         }
-        
-        
+    }
+    
+    func createProfileChangeRequest(photoUrl: String) {
+        let request = Auth.auth().currentUser?.createProfileChangeRequest()
+        request?.photoURL = URL(string: photoUrl)
+        request?.commitChanges(completion: { error in
+            if let error = error {
+                print("Error changing profile \(error.localizedDescription)")
+            } else {
+                print("Profile successfully updated")
+            }
+        })
     }
     
 }
