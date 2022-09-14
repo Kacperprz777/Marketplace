@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileView: UIView {
-
+    
     
     private let editPhotoButton = UIButton.makeEditPhotoButton()
     private let signOutButton = UIButton.makeSignOutButton()
@@ -35,7 +35,7 @@ class ProfileView: UIView {
     
     private func configureProfileImage() {
         let ultraLightConfiguration = UIImage.SymbolConfiguration(weight: .ultraLight)
-
+        
         addSubview(profileImage)
         profileImage.backgroundColor = .systemGray6
         profileImage.contentMode = .scaleAspectFit
@@ -54,10 +54,10 @@ class ProfileView: UIView {
         addSubview(editPhotoButton)
         editPhotoButton.layer.cornerRadius = 22
         editPhotoButton.addTarget(self, action: #selector(editPhotoButtonTapped), for: .touchUpInside)
-
+        
         editPhotoButton.snp.makeConstraints { make in
-            make.leading.equalTo(profileImage.snp_trailing).offset(-20)
-            make.top.equalTo(profileImage.snp_top).offset(110)
+            make.leading.equalTo(profileImage.snp.trailing).offset(-20)
+            make.top.equalTo(profileImage.snp.top).offset(110)
         }
     }
     
@@ -66,9 +66,11 @@ class ProfileView: UIView {
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
         
         signOutButton.snp.makeConstraints { make in
-            make.leading.equalTo(editPhotoButton.snp_trailing)
-            make.top.equalTo(editPhotoButton.snp_top).offset(-50)
-
+            make.leading.equalTo(editPhotoButton.snp.trailing)
+            make.top.equalTo(editPhotoButton.snp.top).offset(-50)
+            make.width.equalTo(90)
+            make.height.equalTo(30)
+            
         }
     }
     
@@ -79,9 +81,9 @@ class ProfileView: UIView {
         myItemsTableView.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         myItemsTableView.backgroundColor = .systemGray6
         myItemsTableView.layer.cornerRadius = 10
-
+        
         myItemsTableView.snp.makeConstraints { make in
-            make.top.equalTo(profileImage.snp_bottom).offset(40)
+            make.top.equalTo(profileImage.snp.bottom).offset(40)
             make.leading.equalTo(safeAreaLayoutGuide).offset(10)
             make.trailing.equalTo(safeAreaLayoutGuide).offset(-10)
             make.bottom.equalTo(safeAreaLayoutGuide)
@@ -93,27 +95,49 @@ class ProfileView: UIView {
     }
     
     @objc private func signOutButtonTapped() {
-        print("signOutButtonTapped")
+        viewModel.signOut() { [weak self] in
+            self?.signOut()
+        }
     }
 }
 
-extension ProfileView: UITableViewDataSource, UITableViewDelegate {
+extension ProfileView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRowsInTableView()
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = myItemsTableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell else {
             fatalError("could not downcaset to ItemCell")
         }
         
         let cellViewModel = viewModel.getTableViewCellViewModel(at: indexPath)
-        
         cell.update(with: cellViewModel)
+        cell.itemImage.loadImage(at: URL(string: cellViewModel.imageURL))
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        return viewModel.deleteItem(at: indexPath)
+    }
+    
+}
+
+extension ProfileView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "My Items"
+    }
+    
 }

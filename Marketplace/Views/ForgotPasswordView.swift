@@ -12,7 +12,7 @@ class ForgotPasswordView: UIView {
 
     private let appTitleImage = UIImageView()
     private let resetPasswordLabel = UILabel()
-    private let emailTextField = UITextField.makeTextfield(placeholder: "Email")
+    private let emailTextField = BindingTextField(placeholderText: "Email")
     private let sendNewPasswordButton = UIButton()
     
     private(set) var viewModel: ForgotPasswordViewModel
@@ -53,7 +53,7 @@ class ForgotPasswordView: UIView {
         addSubview(resetPasswordLabel)
         
         resetPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(appTitleImage.snp_bottom).offset(12)
+            make.top.equalTo(appTitleImage.snp.bottom).offset(12)
             make.leading.trailing.equalTo(appTitleImage)
             make.height.equalTo(20)
         }
@@ -62,8 +62,12 @@ class ForgotPasswordView: UIView {
     private func configureEmailTextField() {
         addSubview(emailTextField)
         
+        emailTextField.bind { [weak self] text in
+            self?.viewModel.setEmail(text)
+        }
+        
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(resetPasswordLabel.snp_bottom).offset(25)
+            make.top.equalTo(resetPasswordLabel.snp.bottom).offset(25)
             make.trailing.leading.equalTo(resetPasswordLabel)
             make.height.equalTo(20)
         }
@@ -79,7 +83,7 @@ class ForgotPasswordView: UIView {
         addSubview(sendNewPasswordButton)
         
         sendNewPasswordButton.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp_bottom).offset(20)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
             make.leading.equalTo(emailTextField).offset(25)
             make.trailing.equalTo(emailTextField).offset(-25)
             make.height.equalTo(35)
@@ -88,7 +92,7 @@ class ForgotPasswordView: UIView {
     }
     
     @objc private func sendNewPasswordButtonTapped() {
-        viewModel.onSendNewPasswordButtonTapped()
+        viewModel.resetPassword()
     }
     
     

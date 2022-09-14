@@ -9,8 +9,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    private let firebaseManager = FirebaseManager()
+    
     lazy private(set) var profileView = ProfileView(viewModel: viewModel)
-    private var viewModel = ProfileViewModel()
+    lazy private var viewModel = ProfileViewModel(firebaseEventsManager: firebaseManager)
     
     override func loadView() {
         view = profileView
@@ -21,10 +23,20 @@ class ProfileViewController: UIViewController {
         configureVC()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.viewWillAppear()
+        
+    }
+    
+    override func signOut() {
+        resetWindow(with: LoginViewController())
+    }
+    
     private func configureVC() {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
         viewModel.profileDelegate = self
+        profileView.profileImage.loadImage(at: firebaseManager.currentUserProfileImageURL)
     }
     
     private func presentImagePickerController() {
@@ -57,7 +69,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         profileView.profileImage.image = image
-        viewModel.setImage(image)
+        let resizedImage = UIImage.resizeImage(originalImage: image, rect: profileView.profileImage.bounds)
+        let imageData = resizedImage.jpegData(compressionQuality: 0.5)
+        viewModel.uploadProfilePhoto(imageData: imageData)
         dismiss(animated: true)
     }
     

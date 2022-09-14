@@ -8,9 +8,9 @@
 import UIKit
 
 class ItemFeedView: UIView {
-
+    
     private let itemFeedTableView = UITableView()
-
+    
     private var categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -69,7 +69,7 @@ class ItemFeedView: UIView {
         itemFeedTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         itemFeedTableView.snp.makeConstraints { make in
-            make.top.equalTo(categoriesCollectionView.snp_bottom).offset(5)
+            make.top.equalTo(categoriesCollectionView.snp.bottom).offset(5)
             make.leading.trailing.equalTo(categoriesCollectionView)
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
         }
@@ -88,7 +88,7 @@ class ItemFeedView: UIView {
     }
 }
 
-extension ItemFeedView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension ItemFeedView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: categoriesCollectionView.frame.width/3 , height: categoriesCollectionView.frame.width/3)
     }
@@ -97,20 +97,27 @@ extension ItemFeedView: UICollectionViewDelegateFlowLayout, UICollectionViewData
         return viewModel.numberOfRowsInCollectionView()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
- 
-            guard let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "categories", for: indexPath) as? CategoryCell else {
-                fatalError("could not downcaset to CategoryCell")
-            }
-        
-            let cellViewModel = viewModel.getCollectionViewCellViewModel(at: indexPath)
-        
-            cell.update(with: cellViewModel)
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectItemAt(indexPath)
+    }
+    
 }
 
-extension ItemFeedView: UITableViewDelegate, UITableViewDataSource {
+extension ItemFeedView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "categories", for: indexPath) as? CategoryCell else {
+            fatalError("could not downcaset to CategoryCell")
+        }
+        
+        let cellViewModel = viewModel.getCollectionViewCellViewModel(at: indexPath)
+        
+        cell.update(with: cellViewModel)
+        return cell
+    }
+}
+
+extension ItemFeedView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRowsInTableView()
     }
@@ -121,13 +128,21 @@ extension ItemFeedView: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cellViewModel = viewModel.getTableViewCellViewModel(at: indexPath)
-        
         cell.update(with: cellViewModel)
+        cell.itemImage.loadImage(at: URL(string: cellViewModel.imageURL))
+        
         return cell
     }
     
+    
+}
+
+extension ItemFeedView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }

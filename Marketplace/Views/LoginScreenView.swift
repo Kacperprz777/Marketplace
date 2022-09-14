@@ -11,8 +11,18 @@ protocol LoginScreenPresentForgotPasswordVC: AnyObject {
     func forgotPasswordVC()
 }
 
-class LoginScreenView: UIView {
+protocol LoginScreenViewDelegate: AnyObject {
+    func createUserSuccess(message: String)
+    func createUserFailure(message: String)
+    func loginSuccess(message: String)
+    func loginFailure(message: String)
+    func emailNotVerified(message: String)
+    func passwordsDontMatch(message: String)
+    func missingFields(message: String)
+}
 
+class LoginScreenView: UIView {
+    
     private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
     private let stackViewLoginInput = UIStackView()
     private let viewModel: LoginScreenViewModel
@@ -21,18 +31,20 @@ class LoginScreenView: UIView {
     
     private let scrollView = UIScrollView()
     
-    private(set) var userNameTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Name", isPassword: false)
-    private(set) var emailTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Email", isPassword: false)
-    private(set) var passwordTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Password", isPassword: true)
-    private(set) var repeatPasswordTextField = UITextField.makeLoginScreenViewTextfield(placeholder: "Repeat password", isPassword: true)
+    private(set) var userNameTextField = BindingTextField(placeholderText: "Name", autocapitalization: .words)
+    private(set) var emailTextField = BindingTextField(placeholderText: "Email")
+    private(set) var passwordTextField = BindingTextField(placeholderText: "Password", isPassword: true)
+    private(set) var repeatPasswordTextField = BindingTextField(placeholderText: "Repeat password", isPassword: true)
     
     private var segmentedControl = UISegmentedControl()
     
     weak var present: LoginScreenPresentForgotPasswordVC?
+    weak var delegate: LoginScreenViewDelegate?
     
     init(viewModel: LoginScreenViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        viewModel.loginEvents = self
         configureScrollView()
         configureLogoImage()
         configureSegmentedControl()
@@ -53,8 +65,8 @@ class LoginScreenView: UIView {
         logoImage.snp.makeConstraints { make in
             make.height.equalTo(self).multipliedBy(0.3)
             make.width.equalTo(self).multipliedBy(0.4)
-            make.top.equalTo(scrollView.snp_top).offset(10)
-            make.centerX.equalTo(scrollView.snp_centerX)
+            make.top.equalTo(scrollView.snp.top).offset(10)
+            make.centerX.equalTo(scrollView.snp.centerX)
         }
     }
     
@@ -74,9 +86,9 @@ class LoginScreenView: UIView {
         scrollView.addSubview(segmentedControl)
         
         segmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(logoImage.snp_bottom).offset(15)
+            make.top.equalTo(logoImage.snp.bottom).offset(15)
             make.leading.trailing.equalTo(scrollView).offset(55)
-            make.centerX.equalTo(logoImage.snp_centerX)
+            make.centerX.equalTo(logoImage.snp.centerX)
             make.height.equalTo(30)
         }
     }
@@ -98,6 +110,22 @@ class LoginScreenView: UIView {
         passwordTextField.delegate = self
         repeatPasswordTextField.delegate = self
         
+        userNameTextField.bind { [weak self] text in
+            self?.viewModel.setUserName(text)
+        }
+        
+        emailTextField.bind { [weak self] text in
+            self?.viewModel.setEmail(text)
+        }
+        
+        passwordTextField.bind { [weak self] text in
+            self?.viewModel.setPassword(text)
+        }
+        
+        repeatPasswordTextField.bind { [weak self] text in
+            self?.viewModel.setRepeatPassword(text)
+        }
+        
         stackViewLoginInput.addArrangedSubview(userNameTextField)
         stackViewLoginInput.addArrangedSubview(emailTextField)
         stackViewLoginInput.addArrangedSubview(passwordTextField)
@@ -110,7 +138,7 @@ class LoginScreenView: UIView {
         
         stackViewLoginInput.snp.makeConstraints { make in
             make.leading.trailing.equalTo(segmentedControl)
-            make.top.equalTo(segmentedControl.snp_bottom).offset(15)
+            make.top.equalTo(segmentedControl.snp.bottom).offset(15)
         }
     }
     
@@ -121,7 +149,7 @@ class LoginScreenView: UIView {
         
         mainButton.snp.makeConstraints { make in
             make.leading.trailing.equalTo(stackViewLoginInput)
-            make.top.equalTo(stackViewLoginInput.snp_bottom).offset(20)
+            make.top.equalTo(stackViewLoginInput.snp.bottom).offset(20)
             make.height.equalTo(45)
         }
     }
@@ -164,7 +192,44 @@ extension LoginScreenView: UITextFieldDelegate {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //
+    //    }
 }
+
+extension LoginScreenView: LoginScreenViewEvents {
+
+    func createUserFailure(error: Error) {
+        delegate?.createUserFailure(message: error.localizedDescription)
+    }
+    
+    func onLoginFailure(error: Error) {
+        delegate?.loginFailure(message: error.localizedDescription)
+    }
+    
+    func onLoginSuccess() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        endEditing(true)
+        delegate?.loginSuccess(message: "Logged in")
+    }
+    
+    func createUserSuccess() {
+        delegate?.createUserSuccess(message: "Check your email with activation link")
+        
+    }
+    
+    func emailNotVerified() {
+        delegate?.emailNotVerified(message: "Your email is not verified")
+    }
+    
+    func passwordsDontMatch() {
+        delegate?.passwordsDontMatch(message: "Passwords do not match")
+    }
+    
+    func missingFields() {
+        delegate?.missingFields(message: "All fields are required")
+    }
+}
+
+
