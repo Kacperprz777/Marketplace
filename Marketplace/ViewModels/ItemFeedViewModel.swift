@@ -76,6 +76,7 @@ final class ItemFeedViewModel {
     }
     
     var reloadTableViewClosure: () -> Void = { }
+    var showItemClosure: (Item) -> Void = { _ in }
     
     private var state: tableViewState = .empty
     
@@ -104,5 +105,10 @@ final class ItemFeedViewModel {
     
     func getTableViewCellViewModel(at indexPath: IndexPath) -> ItemCellViewModel {
         tableViewCellViewModels[indexPath.row]
+    }
+    
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        let item = tableViewCellViewModels[indexPath.row].item
+        showItemClosure(item)
     }
 }

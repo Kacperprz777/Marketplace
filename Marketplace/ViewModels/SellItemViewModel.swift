@@ -59,7 +59,7 @@ final class SellItemViewModel {
     func sellItem(imageData: Data?, handler: @escaping (Error?) -> Void ) {
         guard let imageData = imageData, !title.isEmpty, !category.isEmpty, !description.isEmpty, price > 0.0  else { return }
         
-        firebaseEventsManager?.createItem(itemName: title, price: price, category: category, completion: { [weak self] createItemResult in
+        firebaseEventsManager?.createItem(itemName: title, price: price, category: category, description: description, completion: { [weak self] createItemResult in
             switch createItemResult {
             case .failure(let error):
                 //alert

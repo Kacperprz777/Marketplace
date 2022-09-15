@@ -33,6 +33,7 @@ class ItemFeedView: UIView {
             self?.itemFeedTableView.reloadData()
             self?.itemFeedTableView.backgroundView?.isHidden = viewModel.isInEmptyState
         }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -144,5 +145,6 @@ extension ItemFeedView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        viewModel.didSelectRowAt(indexPath)
     }
 }

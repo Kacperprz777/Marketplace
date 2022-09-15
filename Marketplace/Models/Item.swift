@@ -16,6 +16,7 @@ struct Item {
     let listedDate: Timestamp
     let categoryName: String
     let imageURL: String
+    let description: String
     
 }
 
@@ -28,5 +29,6 @@ extension Item {
     self.sellerId = dictionary["sellerId"] as? String ?? "no seller id"
     self.categoryName = dictionary["categoryName"] as? String ?? "no category name"
     self.imageURL = dictionary["imageURL"] as? String ?? "no image url"
+    self.description = dictionary["description"] as? String ?? "no description"
   }
 }
