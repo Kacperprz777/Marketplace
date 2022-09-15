@@ -22,6 +22,11 @@ class ItemFeedViewController: UIViewController {
         super.viewDidLoad()
         configureVC()
         viewModel.viewDidLoad()
+        
+        viewModel.showItemClosure = { [weak self] item in
+            self?.navigationController?.pushViewController(ItemDetailViewController(item), animated: true)
+
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +44,4 @@ class ItemFeedViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Marketplace"
     }
-
-
 }

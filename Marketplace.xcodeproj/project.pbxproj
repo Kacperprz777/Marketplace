@@ -47,6 +47,9 @@
 		AAC85CF728AEAFA20024B6E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF628AEAFA20024B6E9 /* Assets.xcassets */; };
 		AAC85CFA28AEAFA20024B6E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC85CF828AEAFA20024B6E9 /* LaunchScreen.storyboard */; };
 		AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */; };
+		AAD892FB28D20DF50040F3D2 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD892FA28D20DF50040F3D2 /* ItemDetailViewController.swift */; };
+		AAD892FD28D20E1B0040F3D2 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD892FC28D20E1B0040F3D2 /* ItemDetailView.swift */; };
+		AAD892FF28D20E2A0040F3D2 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD892FE28D20E2A0040F3D2 /* ItemDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,9 @@
 		AAC85CF928AEAFA20024B6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAC85CFB28AEAFA20024B6E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAC85D0328B5090F0024B6E9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		AAD892FA28D20DF50040F3D2 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		AAD892FC28D20E1B0040F3D2 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		AAD892FE28D20E2A0040F3D2 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		AC038477E555315D29298D92 /* Pods-Marketplace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.debug.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.debug.xcconfig"; sourceTree = "<group>"; };
 		C739405FA71BD9619831AB84 /* Pods-Marketplace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marketplace.release.xcconfig"; path = "Target Support Files/Pods-Marketplace/Pods-Marketplace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +185,7 @@
 				AA24B4BD28BF618A00EC7E3B /* ItemCellViewModel.swift */,
 				AA24B4C528BFBA8600EC7E3B /* SellItemViewModel.swift */,
 				AA24B4D028C34C6400EC7E3B /* ProfileViewModel.swift */,
+				AAD892FE28D20E2A0040F3D2 /* ItemDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 				AA24B48928BCBF0600EC7E3B /* ItemFeedView.swift */,
 				AA24B4C328BFBA6200EC7E3B /* SellItemView.swift */,
 				AA24B4CC28C34C1900EC7E3B /* ProfileView.swift */,
+				AAD892FC28D20E1B0040F3D2 /* ItemDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +266,7 @@
 				AA24B48D28BCBFA200EC7E3B /* ItemFeedViewController.swift */,
 				AA24B4C128BFBA1800EC7E3B /* SellItemViewController.swift */,
 				AA24B4CE28C34C4300EC7E3B /* ProfileViewController.swift */,
+				AAD892FA28D20DF50040F3D2 /* ItemDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -387,11 +396,13 @@
 				AA24B4CD28C34C1900EC7E3B /* ProfileView.swift in Sources */,
 				AA24B48A28BCBF0600EC7E3B /* ItemFeedView.swift in Sources */,
 				AA24B4BE28BF618A00EC7E3B /* ItemCellViewModel.swift in Sources */,
+				AAD892FD28D20E1B0040F3D2 /* ItemDetailView.swift in Sources */,
 				AA24B4DF28C5C08300EC7E3B /* UIViewController+Alerts.swift in Sources */,
 				AA24B4CF28C34C4300EC7E3B /* ProfileViewController.swift in Sources */,
 				AA24B4DB28C4F2EF00EC7E3B /* FirebaseManager.swift in Sources */,
 				AA24B4BC28BE7CDE00EC7E3B /* ItemCell.swift in Sources */,
 				AA24B4EB28CE75C800EC7E3B /* ImageLoader.swift in Sources */,
+				AAD892FF28D20E2A0040F3D2 /* ItemDetailViewModel.swift in Sources */,
 				AAC85CF228AEAFA10024B6E9 /* LoginViewController.swift in Sources */,
 				AA5F5DE228B8C74200936E76 /* LoginScreenViewModel.swift in Sources */,
 				AAC85CEE28AEAFA10024B6E9 /* AppDelegate.swift in Sources */,
@@ -409,6 +420,7 @@
 				AA24B48428BA21B000EC7E3B /* ForgotPasswordView.swift in Sources */,
 				AA24B4E328CA551400EC7E3B /* UIResponder+Extensions.swift in Sources */,
 				AA24B4E928CE73F800EC7E3B /* UIImageView+Extension.swift in Sources */,
+				AAD892FB28D20DF50040F3D2 /* ItemDetailViewController.swift in Sources */,
 				AAC85D0428B5090F0024B6E9 /* WelcomeView.swift in Sources */,
 				AA24B49128BD0B3900EC7E3B /* Category.swift in Sources */,
 				AA24B49428BD0CC100EC7E3B /* CategoryCell.swift in Sources */,

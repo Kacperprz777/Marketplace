@@ -16,7 +16,7 @@ protocol FirebaseManagerProtocol: AnyObject {
     func signExistingUser(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> ())
     func resetUserPassword(with email: String, completion: @escaping (Result<Void, Error>) -> ())
     func createDatabaseUser(authDataResult: AuthDataResult , completion: @escaping (Result<Bool, Error>) -> ())
-    func createItem(itemName: String, price: Double, category: String, completion: @escaping (Result<String, Error>) -> ())
+    func createItem(itemName: String, price: Double, category: String, description: String, completion: @escaping (Result<String, Error>) -> ())
     func uploadItemPhoto(itemId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ())
     func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ())
     func fetchUserItems(userId: String, completion: @escaping (Result<[Item], Error>) -> ())
@@ -143,6 +143,7 @@ final class FirebaseManager: FirebaseManagerProtocol {
     func createItem(itemName: String,
                     price: Double,
                     category: String,
+                    description: String,
                     completion: @escaping (Result<String, Error>) -> ()) {
         guard let user = auth.currentUser else { return }
         let documentRef = db.collection(FirebaseManager.itemsCollection).document()
@@ -153,7 +154,9 @@ final class FirebaseManager: FirebaseManagerProtocol {
                       "itemId":documentRef.documentID,
                       "listedDate": Timestamp(date: Date()),
                       "sellerId": user.uid,
-                      "categoryName": category]) { (error) in
+                      "categoryName": category,
+                      "description": description,
+                     ]) { (error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {

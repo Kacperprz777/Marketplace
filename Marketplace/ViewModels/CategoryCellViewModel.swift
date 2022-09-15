@@ -10,9 +10,6 @@ import Foundation
 struct CategoryCellViewModel {
     
     private let category: Category
-    init(_ category: Category) {
-        self.category = category
-    }
     
     var imageSystemName: String {
         category.imageSystemName
@@ -21,4 +18,10 @@ struct CategoryCellViewModel {
     var name: String {
         category.name
     }
+    
+    init(_ category: Category) {
+        self.category = category
+    }
+    
+
 }

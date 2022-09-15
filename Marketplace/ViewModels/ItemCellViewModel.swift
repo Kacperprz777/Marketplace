@@ -11,10 +11,6 @@ struct ItemCellViewModel {
     
     private(set) var item: Item
     
-    init(_ item: Item) {
-        self.item = item
-    }
-    
     var itemName: String {
         item.itemName
     }
@@ -25,6 +21,10 @@ struct ItemCellViewModel {
     
     var imageURL: String {
         item.imageURL
+    }
+    
+    init(_ item: Item) {
+        self.item = item
     }
     
 }
