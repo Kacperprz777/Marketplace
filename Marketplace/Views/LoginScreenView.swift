@@ -11,16 +11,6 @@ protocol LoginScreenPresentForgotPasswordVC: AnyObject {
     func forgotPasswordVC()
 }
 
-protocol LoginScreenViewDelegate: AnyObject {
-    func createUserSuccess(message: String)
-    func createUserFailure(message: String)
-    func loginSuccess(message: String)
-    func loginFailure(message: String)
-    func emailNotVerified(message: String)
-    func passwordsDontMatch(message: String)
-    func missingFields(message: String)
-}
-
 class LoginScreenView: UIView {
     
     private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
@@ -39,7 +29,6 @@ class LoginScreenView: UIView {
     private var segmentedControl = UISegmentedControl()
     
     weak var present: LoginScreenPresentForgotPasswordVC?
-    weak var delegate: LoginScreenViewDelegate?
     
     init(viewModel: LoginScreenViewModel) {
         self.viewModel = viewModel
@@ -167,7 +156,6 @@ class LoginScreenView: UIView {
             make.height.equalTo(15)
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-8)
         }
-        
     }
     
     @objc private func forgotPasswordButtonTapped() {
@@ -178,7 +166,6 @@ class LoginScreenView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
         addGestureRecognizer(tapGesture)
     }
-    
 }
 
 
@@ -191,44 +178,48 @@ extension LoginScreenView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
-    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    //
-    //    }
 }
 
 extension LoginScreenView: LoginScreenViewEvents {
 
     func createUserFailure(error: Error) {
-        delegate?.createUserFailure(message: error.localizedDescription)
+        showAlert(message: error.localizedDescription)
     }
     
     func onLoginFailure(error: Error) {
-        delegate?.loginFailure(message: error.localizedDescription)
+        showAlert(message: error.localizedDescription)
     }
     
     func onLoginSuccess() {
         emailTextField.text = ""
         passwordTextField.text = ""
         endEditing(true)
-        delegate?.loginSuccess(message: "Logged in")
+        resetWindow(message: "Logged in")
     }
     
     func createUserSuccess() {
-        delegate?.createUserSuccess(message: "Check your email with activation link")
-        
+        showAlert(message: "Check your email with activation link") { [weak self] _ in
+            self?.segmentedControl.selectedSegmentIndex = 0
+            self?.viewModel.toogleState()
+            self?.userNameTextField.isHidden = true
+            self?.repeatPasswordTextField.isHidden = true
+            self?.userNameTextField.text = ""
+            self?.repeatPasswordTextField.text = ""
+            self?.mainButton.setTitle("Sign In", for: .normal)
+            self?.endEditing(true)
+        }
     }
     
     func emailNotVerified() {
-        delegate?.emailNotVerified(message: "Your email is not verified")
+        showAlert(message: "Your email is not verified")
     }
     
     func passwordsDontMatch() {
-        delegate?.passwordsDontMatch(message: "Passwords do not match")
+        showAlert(message: "Passwords do not match")
     }
     
     func missingFields() {
-        delegate?.missingFields(message: "All fields are required")
+        showAlert(message: "All fields are required")
     }
 }
 

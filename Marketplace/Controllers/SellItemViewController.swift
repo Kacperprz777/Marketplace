@@ -23,7 +23,7 @@ class SellItemViewController: UIViewController {
         configureVC()
     }
     
-    override func showAlert(message: String) {
+    override func showAlert(message: String, handler: ((UIAlertAction) -> Void)? = nil) {
         showAlert(title: nil, message: message)
     }
     
