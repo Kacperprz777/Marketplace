@@ -20,7 +20,7 @@ extension UIButton {
     
     static func makeforgotPasswordButton() -> UIButton {
         let button = UIButton()
-        button.setTitle("Forgot your password?", for: .normal)
+        button.setTitle(Constants.forgotPassword, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
@@ -28,7 +28,7 @@ extension UIButton {
     
     static func makeSignOutButton() -> UIButton {
         let button = UIButton()
-        button.setTitle("Sign Out", for: .normal)
+        button.setTitle(Constants.signOut, for: .normal)
         button.backgroundColor = .systemRed
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -39,7 +39,7 @@ extension UIButton {
     static func makeEditPhotoButton() -> UIButton {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold, scale: .large)
-        let boldPencil = UIImage(systemName: "pencil.circle.fill", withConfiguration: config)
+        let boldPencil = UIImage(systemName: Images.pencilCircleFill, withConfiguration: config)
 
         button.setImage(boldPencil, for: .normal)
         return button

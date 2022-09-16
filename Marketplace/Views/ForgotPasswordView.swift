@@ -12,8 +12,8 @@ class ForgotPasswordView: UIView {
 
     private let appTitleImage = UIImageView()
     private let resetPasswordLabel = UILabel()
-    private let emailTextField = BindingTextField(placeholderText: "Email")
-    private let sendNewPasswordButton = UIButton()
+    private let emailTextField = BindingTextField(placeholderText: Constants.email)
+    private let sendNewPasswordButton = UIButton.makeButton(title: Constants.sendNewPassword)
     
     private(set) var viewModel: ForgotPasswordViewModel
     
@@ -32,7 +32,7 @@ class ForgotPasswordView: UIView {
     }
     
     private func configureAppTitleImage() {
-        appTitleImage.image = UIImage(named: "title-Marketplace")
+        appTitleImage.image = Images.titleImage
         addSubview(appTitleImage)
         
         appTitleImage.snp.makeConstraints { make in
@@ -45,7 +45,7 @@ class ForgotPasswordView: UIView {
     }
     
     private func configureResetPasswordLabel() {
-        resetPasswordLabel.text = "Reset password"
+        resetPasswordLabel.text = Constants.resetPassword
         resetPasswordLabel.font = UIFont.systemFont(ofSize: 22)
         resetPasswordLabel.textAlignment = .center
         resetPasswordLabel.textColor = .black
@@ -74,11 +74,6 @@ class ForgotPasswordView: UIView {
     }
     
     private func configureSendNewPasswordButton() {
-        sendNewPasswordButton.backgroundColor = .systemBlue
-        sendNewPasswordButton.layer.cornerRadius = 10
-        sendNewPasswordButton.setTitleColor(.white, for: .normal)
-        sendNewPasswordButton.setTitle("Send new password", for: .normal)
-        
         sendNewPasswordButton.addTarget(self, action: #selector(sendNewPasswordButtonTapped), for: .touchUpInside)
         addSubview(sendNewPasswordButton)
         

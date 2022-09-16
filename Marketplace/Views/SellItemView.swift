@@ -10,10 +10,10 @@ import UIKit
 class SellItemView: UIView {
     
     private let scrollView = UIScrollView()
-    private let titleTextField = BindingTextField(placeholderText: "Title")
-    private let priceTextField = BindingTextField(placeholderText: "Price")
+    private let titleTextField = BindingTextField(placeholderText: Constants.title)
+    private let priceTextField = BindingTextField(placeholderText: Constants.price)
     private let descriptionTextView = UITextView()
-    private let sellButton = UIButton.makeButton(title: "Sell")
+    private let sellButton = UIButton.makeButton(title: Constants.sell)
     private let descriptionPlaceholder = UILabel()
     
     private var categoriesPicker = UIPickerView()
@@ -58,7 +58,7 @@ class SellItemView: UIView {
         let padding: CGFloat = 30
         scrollView.addSubview(itemImage)
         itemImage.backgroundColor = .systemGray6
-        itemImage.image = UIImage(named: "addPhotoImage")
+        itemImage.image = Images.addPhotoImage
         itemImage.contentMode = .scaleAspectFit
         itemImage.layer.cornerRadius = 10
         itemImage.clipsToBounds = true
@@ -137,7 +137,7 @@ class SellItemView: UIView {
     private func configureDescriptionPlaceholder() {
         let padding: CGFloat = 8
         scrollView.addSubview(descriptionPlaceholder)
-        descriptionPlaceholder.text = "Description"
+        descriptionPlaceholder.text = Constants.description
         descriptionPlaceholder.font = UIFont.systemFont(ofSize: 18)
         descriptionPlaceholder.textColor = .lightGray
         
@@ -173,13 +173,13 @@ class SellItemView: UIView {
                 self?.showAlert(message: error.localizedDescription)
 
             }
-            self?.itemImage.image = UIImage(named: "addPhotoImage")
+            self?.itemImage.image = Images.addPhotoImage
             self?.titleTextField.text = ""
             self?.priceTextField.text = ""
             self?.descriptionTextView.text = ""
             self?.resetPickerView()
             self?.sellButton.isEnabled = true
-            self?.showAlert(message: "Item added successfully!")
+            self?.showAlert(message: Alerts.addItemSuccess)
             self?.descriptionPlaceholder.isHidden = false
         }
     }

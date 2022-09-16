@@ -54,9 +54,9 @@ final class LoginScreenViewModel {
     
     func setTitleForMainButton() -> String {
         if isInSignInState {
-            return "Sign In"
+            return Constants.signIn
         } else {
-            return "Register"
+            return Constants.register
         }
     }
     

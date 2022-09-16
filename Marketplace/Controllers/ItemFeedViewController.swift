@@ -42,6 +42,6 @@ class ItemFeedViewController: UIViewController {
     private func configureVC() {
         //navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Marketplace"
+        navigationItem.title = Constants.appTitle
     }
 }

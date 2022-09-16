@@ -42,14 +42,14 @@ class ProfileViewController: UIViewController {
     private func presentImagePickerController() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        let alertController = UIAlertController(title: "Change Your Profile Photo"
+        let alertController = UIAlertController(title: Alerts.changeProfilePhoto
                                                 , message: nil, preferredStyle: .actionSheet)
         
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { alertAction in
+        let photoLibrary = UIAlertAction(title: Alerts.photoLibrary, style: .default) { alertAction in
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: Alerts.cancel, style: .cancel)
         
         alertController.addAction(photoLibrary)
         alertController.addAction(cancelAction)

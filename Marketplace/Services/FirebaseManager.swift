@@ -58,7 +58,6 @@ final class FirebaseManager: FirebaseManagerProtocol {
                 completion(.success(true))
                 
                 guard let authDataResult = authDataResult else { return }
-                // zapisać do database
                 self?.createDatabaseUser(authDataResult: authDataResult) { result in
                     switch result {
                     case .failure(let createDatabaseUserError):

@@ -37,17 +37,17 @@ class SellItemViewController: UIViewController {
         view.endEditing(true)
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: Alerts.chosePhotoOption, message: nil, preferredStyle: .actionSheet)
         
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { alertAction in
+        let cameraAction = UIAlertAction(title: Alerts.camera, style: .default) { alertAction in
           imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true)
         }
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { alertAction in
+        let photoLibrary = UIAlertAction(title: Alerts.photoLibrary, style: .default) { alertAction in
           imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: Alerts.cancel, style: .cancel)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
           alertController.addAction(cameraAction)
         }

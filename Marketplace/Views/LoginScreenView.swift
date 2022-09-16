@@ -13,18 +13,18 @@ protocol LoginScreenPresentForgotPasswordVC: AnyObject {
 
 class LoginScreenView: UIView {
     
-    private let logoImage = UIImageView(image: UIImage(named: "logo-Marketplace"))
+    private let logoImage = UIImageView(image: Images.logoImage)
     private let stackViewLoginInput = UIStackView()
     private let viewModel: LoginScreenViewModel
-    private let mainButton = UIButton.makeButton(title: "Sign In")
+    private let mainButton = UIButton.makeButton(title: Constants.signIn)
     private let forgotPasswordButton = UIButton.makeforgotPasswordButton()
     
     private let scrollView = UIScrollView()
     
-    private(set) var userNameTextField = BindingTextField(placeholderText: "Name", autocapitalization: .words)
-    private(set) var emailTextField = BindingTextField(placeholderText: "Email")
-    private(set) var passwordTextField = BindingTextField(placeholderText: "Password", isPassword: true)
-    private(set) var repeatPasswordTextField = BindingTextField(placeholderText: "Repeat password", isPassword: true)
+    private(set) var userNameTextField = BindingTextField(placeholderText: Constants.name, autocapitalization: .words)
+    private(set) var emailTextField = BindingTextField(placeholderText: Constants.email)
+    private(set) var passwordTextField = BindingTextField(placeholderText: Constants.password, isPassword: true)
+    private(set) var repeatPasswordTextField = BindingTextField(placeholderText: Constants.repeatPassword, isPassword: true)
     
     private var segmentedControl = UISegmentedControl()
     
@@ -69,7 +69,7 @@ class LoginScreenView: UIView {
     }
     
     func configureSegmentedControl() {
-        segmentedControl = UISegmentedControl(items: ["Sign In", "Register"])
+        segmentedControl = UISegmentedControl(items: [Constants.signIn, Constants.register])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange), for: .valueChanged)
         scrollView.addSubview(segmentedControl)
@@ -194,32 +194,32 @@ extension LoginScreenView: LoginScreenViewEvents {
         emailTextField.text = ""
         passwordTextField.text = ""
         endEditing(true)
-        resetWindow(message: "Logged in")
+        resetWindow(message: Alerts.loginSuccess)
     }
     
     func createUserSuccess() {
-        showAlert(message: "Check your email with activation link") { [weak self] _ in
+        showAlert(message: Alerts.emailActivation) { [weak self] _ in
             self?.segmentedControl.selectedSegmentIndex = 0
             self?.viewModel.toogleState()
             self?.userNameTextField.isHidden = true
             self?.repeatPasswordTextField.isHidden = true
             self?.userNameTextField.text = ""
             self?.repeatPasswordTextField.text = ""
-            self?.mainButton.setTitle("Sign In", for: .normal)
+            self?.mainButton.setTitle(Constants.signIn, for: .normal)
             self?.endEditing(true)
         }
     }
     
     func emailNotVerified() {
-        showAlert(message: "Your email is not verified")
+        showAlert(message: Alerts.emailIsNotVerified)
     }
     
     func passwordsDontMatch() {
-        showAlert(message: "Passwords do not match")
+        showAlert(message: Alerts.passwordDontMatch)
     }
     
     func missingFields() {
-        showAlert(message: "All fields are required")
+        showAlert(message: Alerts.missingFields)
     }
 }
 

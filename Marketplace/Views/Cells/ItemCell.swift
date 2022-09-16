@@ -15,7 +15,7 @@ class ItemCell: UITableViewCell {
     private var priceLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: "itemCell")
+        super.init(style: style, reuseIdentifier: Constants.itemCell)
         configureItemImage()
         configureItemNameLabel()
         //configureDateLabel()
@@ -34,7 +34,7 @@ class ItemCell: UITableViewCell {
     private func configureItemImage() {
         contentView.addSubview(itemImage)
         itemImage.contentMode = .scaleAspectFit
-        itemImage.image = UIImage(systemName: "photo.fill")
+        itemImage.image = Images.photoFill
         
         itemImage.snp.makeConstraints { make in
             make.top.leading.equalTo(self).offset(10)
@@ -45,7 +45,7 @@ class ItemCell: UITableViewCell {
     
     private func configureItemNameLabel() {
         contentView.addSubview(itemNameLabel)
-        itemNameLabel.text = "itemNameLabel"
+        itemNameLabel.text = Constants.itemNameLabel
         itemNameLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         
         itemNameLabel.snp.makeConstraints { make in
@@ -65,7 +65,7 @@ class ItemCell: UITableViewCell {
     
     private func configurePriceLabel() {
         contentView.addSubview(priceLabel)
-        priceLabel.text = "priceLabel"
+        priceLabel.text = Constants.priceLabel
         priceLabel.snp.makeConstraints { make in
             make.trailing.equalTo(self).offset(-20)
             make.bottom.equalTo(self).offset(-20)

@@ -29,7 +29,7 @@ final class ForgotPasswordViewModel {
                 case .failure(let error):
                     self?.error.value = error.localizedDescription
                 case .success(_):
-                    self?.success.value = "Password has been reset"
+                    self?.success.value = Constants.passwordReset
                 }
             })
         }

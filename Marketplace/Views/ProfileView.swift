@@ -40,7 +40,7 @@ class ProfileView: UIView {
         profileImage.backgroundColor = .systemGray6
         profileImage.contentMode = .scaleAspectFit
         profileImage.clipsToBounds = true
-        profileImage.image = UIImage(systemName: "person", withConfiguration: ultraLightConfiguration)
+        profileImage.image = UIImage(systemName: Images.person, withConfiguration: ultraLightConfiguration)
         profileImage.layer.cornerRadius = 20
         
         profileImage.snp.makeConstraints { make in
@@ -78,7 +78,7 @@ class ProfileView: UIView {
         addSubview(myItemsTableView)
         myItemsTableView.delegate = self
         myItemsTableView.dataSource = self
-        myItemsTableView.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
+        myItemsTableView.register(ItemCell.self, forCellReuseIdentifier: Constants.itemCell)
         myItemsTableView.backgroundColor = .systemGray6
         myItemsTableView.layer.cornerRadius = 10
         
@@ -107,7 +107,7 @@ extension ProfileView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = myItemsTableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell else {
+        guard let cell = myItemsTableView.dequeueReusableCell(withIdentifier: Constants.itemCell, for: indexPath) as? ItemCell else {
             fatalError("could not downcaset to ItemCell")
         }
         
@@ -137,7 +137,7 @@ extension ProfileView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "My Items"
+        Constants.myItems
     }
     
 }

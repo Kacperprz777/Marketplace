@@ -15,7 +15,7 @@ class ItemFeedView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(CategoryCell.self, forCellWithReuseIdentifier: "categories")
+        cv.register(CategoryCell.self, forCellWithReuseIdentifier: Constants.categories)
         return cv
     }()
     
@@ -61,7 +61,7 @@ class ItemFeedView: UIView {
     private func configureItemFeedTableView() {
         addSubview(itemFeedTableView)
         
-        itemFeedTableView.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
+        itemFeedTableView.register(ItemCell.self, forCellReuseIdentifier: Constants.itemCell)
         itemFeedTableView.delegate = self
         itemFeedTableView.dataSource = self
         
@@ -79,7 +79,7 @@ class ItemFeedView: UIView {
     private func configureEmptyStateImageView() {
         addSubview(emptyStateImageView)
         
-        emptyStateImageView.image = UIImage(named: "emptyTableViewImage")
+        emptyStateImageView.image = Images.emptyTableViewImage
         itemFeedTableView.backgroundView = emptyStateImageView
         
         emptyStateImageView.snp.makeConstraints { make in
@@ -107,7 +107,7 @@ extension ItemFeedView: UICollectionViewDelegateFlowLayout {
 extension ItemFeedView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "categories", for: indexPath) as? CategoryCell else {
+        guard let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.categories, for: indexPath) as? CategoryCell else {
             fatalError("could not downcaset to CategoryCell")
         }
         
@@ -124,7 +124,7 @@ extension ItemFeedView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = itemFeedTableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell else {
+        guard let cell = itemFeedTableView.dequeueReusableCell(withIdentifier: Constants.itemCell, for: indexPath) as? ItemCell else {
             fatalError("could not downcaset to ItemCell")
         }
         

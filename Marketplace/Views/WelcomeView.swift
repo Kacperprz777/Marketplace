@@ -32,7 +32,7 @@ class WelcomeView: UIView {
         let widthConstant: CGFloat = 245
         let heightConstant: CGFloat = 260
         
-        launchingImage.image = UIImage(named: "logo-Marketplace")
+        launchingImage.image = Images.logoImage
         launchingImage.contentMode = .scaleAspectFill
         self.addSubview(launchingImage)
         
