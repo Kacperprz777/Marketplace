@@ -27,6 +27,7 @@ protocol FirebaseManagerProtocol: AnyObject {
     func updateDatabaseUser(photoURL: String, completion: @escaping (Result<Bool, Error>) -> ())
     func createProfileChangeRequest(photoUrl: String)
     func signOut()
+    func deleteItemPhoto(itemId: String)
     var currentUserId: String? { get }
     var currentUserProfileImageURL: URL? { get }
 }
@@ -175,11 +176,12 @@ final class FirebaseManager: FirebaseManagerProtocol {
     }
     
     func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
-        db.collection(FirebaseManager.itemsCollection).document(item.itemId).delete { (error) in
+        db.collection(FirebaseManager.itemsCollection).document(item.itemId).delete { [weak self] (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
+                self?.deleteItemPhoto(itemId: item.itemId)
             }
         }
     }
@@ -219,8 +221,7 @@ final class FirebaseManager: FirebaseManagerProtocol {
     
     func uploadItemPhoto(itemId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ()) {
         
-        var photoReference: StorageReference!
-        photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
+        let photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
@@ -242,8 +243,7 @@ final class FirebaseManager: FirebaseManagerProtocol {
     
     func uploadProfilePhoto(userId: String, imageData: Data, completion: @escaping (Result<String, Error>) -> ()) {
         
-        var photoReference: StorageReference!
-        photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
+        let photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
@@ -273,6 +273,18 @@ final class FirebaseManager: FirebaseManagerProtocol {
                 print("Profile successfully updated")
             }
         })
+    }
+    
+    func deleteItemPhoto(itemId: String) {
+        let photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
+        
+        photoReference.delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Item photo deleted successfully")
+            }
+        }
     }
     
 }
