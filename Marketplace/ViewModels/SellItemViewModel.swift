@@ -23,17 +23,21 @@ final class SellItemViewModel {
     private var price = 0.0
     private var description = ""
     
-    init(categoryProvider: CategoryProvider = CategoryProvider(), firebaseEventsManager: FirebaseManagerProtocol) {
-        self.categoryProvider = categoryProvider
-        self.firebaseEventsManager = firebaseEventsManager
-    }
-    
     lazy private(set) var  categoryNames = categoryProvider.getCategories().map {
         $0.name
     }
     
+    func isTextViewPlaceholderHidden(_ text: String) -> Bool {
+        text.isEmpty ? false : true
+    }
+    
     var numberOfRowsInComponent: Int {
         return categoryNames.count
+    }
+    
+    init(categoryProvider: CategoryProvider = CategoryProvider(), firebaseEventsManager: FirebaseManagerProtocol) {
+        self.categoryProvider = categoryProvider
+        self.firebaseEventsManager = firebaseEventsManager
     }
     
     func getCategoryName(for row: Int) -> String {

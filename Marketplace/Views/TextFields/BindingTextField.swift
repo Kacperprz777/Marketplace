@@ -21,9 +21,8 @@ class BindingTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(placeholderText: String, padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8), isPassword: Bool = false, autocapitalization: UITextAutocapitalizationType = .none  ) {
+    convenience init(placeholderText: String, isPassword: Bool = false, autocapitalization: UITextAutocapitalizationType = .none  ) {
         self.init(frame: .zero)
-        self.padding = padding
         placeholder = placeholderText
         isSecureTextEntry = isPassword
         autocapitalizationType = autocapitalization

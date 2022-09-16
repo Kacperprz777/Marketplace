@@ -12,8 +12,9 @@ class SellItemView: UIView {
     private let scrollView = UIScrollView()
     private let titleTextField = BindingTextField(placeholderText: "Title")
     private let priceTextField = BindingTextField(placeholderText: "Price")
-    private let descriptionTextField = BindingTextField(placeholderText: "Description", padding: UIEdgeInsets(top: -100, left: 8, bottom: 0, right: 8))
+    private let descriptionTextView = UITextView()
     private let sellButton = UIButton.makeButton(title: "Sell")
+    private let descriptionPlaceholder = UILabel()
     
     private var categoriesPicker = UIPickerView()
     var itemImage = UIImageView()
@@ -33,7 +34,8 @@ class SellItemView: UIView {
         configureTitleTextField()
         configureCategoriesPicker()
         configurePriceTextField()
-        configureDescriptionTextField()
+        configureDescriptionTextView()
+        configureDescriptionPlaceholder()
         configureSellButton()
         configureTapGesture()
         
@@ -53,8 +55,8 @@ class SellItemView: UIView {
     }
     
     private func configureItemImage(){
+        let padding: CGFloat = 30
         scrollView.addSubview(itemImage)
-        
         itemImage.backgroundColor = .systemGray6
         itemImage.image = UIImage(named: "addPhotoImage")
         itemImage.contentMode = .scaleAspectFit
@@ -66,8 +68,8 @@ class SellItemView: UIView {
         itemImage.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(10)
             make.centerX.equalTo(scrollView.snp.centerX)
-            make.leading.equalTo(scrollView.snp.leading).offset(30)
-            make.trailing.equalTo(scrollView.snp.trailing).offset(-30)
+            make.leading.equalTo(scrollView.snp.leading).offset(padding)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-padding)
             make.height.equalTo(240)
         }
     }
@@ -117,18 +119,31 @@ class SellItemView: UIView {
         }
     }
     
-    private func configureDescriptionTextField(){
-        scrollView.addSubview(descriptionTextField)
-        descriptionTextField.delegate = self
-        descriptionTextField.backgroundColor = .systemGray4
-        descriptionTextField.bind { [weak self] text in
-            self?.viewModel.setDescription(text)
-        }
+    private func configureDescriptionTextView() {
+        scrollView.addSubview(descriptionTextView)
+        descriptionTextView.delegate = self
+        descriptionTextView.layer.cornerRadius = 10
+        descriptionTextView.backgroundColor = .systemGray4
+        descriptionTextView.font = UIFont.systemFont(ofSize: 18)
+        descriptionTextView.autocorrectionType = .no
         
-        descriptionTextField.snp.makeConstraints { make in
+        descriptionTextView.snp.makeConstraints { make in
             make.top.equalTo(priceTextField.snp.bottom).offset(10)
             make.leading.trailing.equalTo(titleTextField)
             make.height.equalTo(120)
+        }
+    }
+    
+    private func configureDescriptionPlaceholder() {
+        let padding: CGFloat = 8
+        scrollView.addSubview(descriptionPlaceholder)
+        descriptionPlaceholder.text = "Description"
+        descriptionPlaceholder.font = UIFont.systemFont(ofSize: 18)
+        descriptionPlaceholder.textColor = .lightGray
+        
+        descriptionPlaceholder.snp.makeConstraints { make in
+            make.top.equalTo(descriptionTextView).offset(padding)
+            make.leading.equalTo(descriptionTextView).offset(padding)
         }
     }
     
@@ -138,7 +153,7 @@ class SellItemView: UIView {
         sellButton.addTarget(self, action: #selector(sellButtonTapped), for: .touchUpInside)
         
         sellButton.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTextField.snp.bottom).offset(20)
+            make.top.equalTo(descriptionTextView.snp.bottom).offset(20)
             make.centerX.equalTo(scrollView)
             make.width.equalTo(150)
             make.height.equalTo(40)
@@ -161,10 +176,11 @@ class SellItemView: UIView {
             self?.itemImage.image = UIImage(named: "addPhotoImage")
             self?.titleTextField.text = ""
             self?.priceTextField.text = ""
-            self?.descriptionTextField.text = ""
+            self?.descriptionTextView.text = ""
             self?.resetPickerView()
             self?.sellButton.isEnabled = true
             self?.showAlert(message: "Item added successfully!")
+            self?.descriptionPlaceholder.isHidden = false
         }
     }
     
@@ -214,6 +230,26 @@ extension SellItemView: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         viewModel.pickerViewDidSelect(row)
+    }
+}
+
+extension SellItemView: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let currentText = textView.text else { return false }
+        let text = currentText + text
+        viewModel.setDescription(text)
+        return true
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        descriptionPlaceholder.isHidden =  viewModel.isTextViewPlaceholderHidden(textView.text)
     }
 }
 
