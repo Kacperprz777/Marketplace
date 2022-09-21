@@ -44,8 +44,12 @@ After downloading this repo, you can run the project `Marketplace.xcworkspace`
 ### Setting a profile photo and deleting items
 ![gif3](Assets/gif3.gif)
 
-### Signing in and out, registering and resetting password
+### Signing in and out
 ![gif4](Assets/gif4.gif)
+
+### Registering
 ![gif5](Assets/gif5.gif)
+
+### Resetting password
 ![gif6](Assets/gif6.gif)
 
