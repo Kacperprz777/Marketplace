@@ -30,6 +30,8 @@ UIKit iOS App for buying/selling items
 - 	app stores user profile photo
 - 	app stores item photos
 - 	user can filter for a specific category of items
+-   user can access camera to take a photo of an item or add an existing one from the photo library
+-   dark mode
 
 ## How to build
 After downloading this repo, you can run the project `Marketplace.xcworkspace`
